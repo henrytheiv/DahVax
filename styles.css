@@ -1,9 +1,45 @@
-body{
-  
-  
-  background-color: #f8f1f1;
+/* Basic style elements */
+body {
+  background-color: #DAE1E7;
+}
+
+h1 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  font-size: 2rem;
+  color: #112031;
+}
+
+.page-title {
+  font-family: "Montserrat", sans-serif;
+  font-size: 2rem;
+  font-weight: 500;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.instruction {
+  font-family: 'Work Sans', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 400;
+  margin: 20px 0 30px 0;
+}
 
 
+tr:first-child th{
+  background: #112031;
+  color: #D4ECDD;
+}
+
+.table{
+
+  font-family: 'Work Sans', sans-serif;
+  font-size: 1.1rem;
+
+}
+
+.table i{
+  color: #152D35;
 }
 
 /* .container {
@@ -78,41 +114,29 @@ body{
   margin-top: 9px;
 } */
 
-h1 {
-  font-family: "Montserrat", sans-serif;
+/* Navigation bar style elements */
+
+nav {
+  padding: 5% 7%;
+}
+
+.navbar-brand {
+  font-size: 2rem;
   font-weight: 700;
-  font-size: 2rem;
-  color: #19456b;
+  color: #D4ECDD;
 }
-
-
-nav{
-    padding: 5% 7%;
-}
-
-.navbar-brand{
-  font-size: 2rem;
-  color: #16c79a;
-}
-
-.container-fluid{
-  padding:3% 35% 6%;
-}
-
 
 .custom-toggler {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='-3.5 2 36 27' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(22, 199, 154)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
-  border-color: #16c79a;
-  color: #16c79a;
+  border-color: #D4ECDD;
+  color: #D4ECDD;
 }
 .custom-navbar {
-  background-color: #19456b;
-  color: #16c79a;
+  background-color: #112031;
 }
 
 .custom-navbar a {
-  color: #16c79a;
-  font-family: "Montserrat", sans-serif;
+  color: #D4ECDD;
   font-weight: 500;
 }
 
@@ -121,32 +145,34 @@ nav{
 }
 
 .custom-navbar a:active {
-    color: #19456b;
-  }
-
-.custom-dropdown-menu {
-    background-color: #19456b;
+  color: #19456b;
 }
 
-.custom-dropdown-menu .dropdown-item:hover{
-    background-color: #16c79a;
-    color: #f8f1f1;
+.custom-dropdown-menu {
+  background-color: #152D35;
+}
+
+.custom-dropdown-menu .dropdown-item:hover {
+  background-color: #345B63;
+  color: #f8f1f1;
 }
 
 .dropdown-toggle::after {
   display: none !important;
 }
 
-form{
+
+
+form {
   display: inline-block;
   margin-top: 20px;
   width: 40%;
 }
 
-@media (max-width: 900px) {
 
-  form{
+
+@media (max-width: 900px) {
+  form {
     width: 50%;
   }
-  
 }
