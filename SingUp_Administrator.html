@@ -1,10 +1,10 @@
-<!-- this is log in page -->
+<!-- this is sign up page -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>DahVax - Login</title>
+    <title>DahVax - Sign Up Administrator</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- Stylesheets -->
@@ -77,12 +77,41 @@
       </div>
     </nav>
 
-    <!-- Log in form-->
+    <!-- Sing Up form Administrator-->
     <div class="text-center">
       <form class="login-form">
-        <h1 class="mb-4 page-title">Sign in</h1>
+        <h1 class="mb-4 page-title">Sign Up</h1>
+
+        <!-- Radio btn for user type -->
+        <!-- Radio btn for Patient -->
+        <div class="form-check form-check-inline mt-2 mb-2">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+            <label class="form-check-label" for="inlineRadio1">Patient</label>
+            <a href="SignUp_Patient.html"></a>
+          </div>
+          <!-- Radio btn for Administrator -->
+          <!-- set the rdo btn to default selected -->
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" checked="checked">
+            <label class="form-check-label" for="inlineRadio2">Administrator</label>
+          </div>
+
+        <!-- dropdown menu for healthcare centre -->   
+        <h5 class="mt-3 page-centreName">Select a centre:</h5>       
+        <div class="mb-2 dropdown">
+          <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Healthcare Centre 
+          </button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Clinic ABC</a>
+            <a class="dropdown-item" href="#">Clinic DEF</a>
+            <a class="dropdown-item" href="#">Clinic HIJ</a>
+          </div>
+        </div>
+        
+
         <!-- text box for username -->
-        <div class="form-floating mb-1">
+        <div class="form-floating">
           <input
             type="text"
             class="form-control"
@@ -91,8 +120,9 @@
           />
           <label for="floatingInput">Username</label>
         </div>
+
         <!-- text box for password -->
-        <div class="form-floating">
+        <div class="form-floating mt-1">
           <input
             type="password"
             class="form-control"
@@ -102,18 +132,49 @@
           <label for="floatingPassword">Password</label>
         </div>
 
-        <!-- remember me check box -->
-        <div class="checkbox mt-2 mb-3">
-          <label>
-            <input type="checkbox" value="remember-me"/>Remember me
-          </label>
-        </div>
-        <!-- Sign In Button -->
-        <button class="w-50 btn btn-lg btn-primary" type="submit">
-          Sign in
+        <!-- text box for fullname -->
+        <div class="form-floating mt-1">
+            <input
+              type="text"
+              class="form-control"
+              id="floatingInput"
+              placeholder="fullname"
+            />
+            <label for="floatingInput">Full name</label>
+          </div>
+
+        <!-- text box for email -->
+        <div class="form-floating mt-1">
+            <input
+              type="email"
+              class="form-control"
+              id="floatingInput"
+              placeholder="email"
+            />
+            <label for="floatingInput">Email</label>
+          </div>
+
+        <!-- text box for StaffID -->
+        <div class="form-floating mt-1">
+            <input
+              type="text"
+              class="form-control"
+              id="floatingInput"
+              placeholder="staffID"
+            />
+            <label for="floatingPassword">Staff ID</label>
+          </div>
+
+        
+          
+
+
+        <!-- Sign Up Button -->
+        <button class="w-50 btn btn-lg btn-primary mt-4" type="submit">
+          Sign Up
         </button>
         <!-- message below sign in button -->
-        <p class="mt-3">Do not have an account? <a href="SingUp_Administrator.html">Sign up here</a></p>
+        <p class="mt-3">Already have an account? <a href="index.html">Log In</a></p>
         <p class="mt-5 mb-3 text-muted">&copy; DahVax 2021</p>
       </form>
     </div>

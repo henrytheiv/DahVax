@@ -5,7 +5,8 @@ function dropDownIconChange() {
 function openLoginForm(){
     document.body.classList.add("showPopUp");
   }
-  function closeLoginForm(){
+
+function closeLoginForm(){
     document.body.classList.remove("showPopUp");
   }
 
