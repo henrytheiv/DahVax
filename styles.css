@@ -27,22 +27,49 @@ body {
   text-align: center;
 }
 
+.sign-up-icon{
+
+  color: #112031;
+  cursor: pointer;
+  
+}
+
+.login-form {
+  display: inline-block;
+  width: 40%;
+}
+
+.sign-up-form{
+
+  margin: auto;
+  display: block;
+  width:50%;
+}
+
+.sign-up-form button{
+
+  margin: auto;
+  display: block;
+
+}
+
+
 /* Drop dowm menu for centre in signUp page */
 
-.dropdown-toggle{
+.custom-dropdown-toggle-healthcare{
   background-color: white;
   color: #112031;
   font-size: 1.1rem;
   margin-top: 1px;
 }
 
-.dropdown-menu{
+.custom-dropdown-menu-healthcare{
   background-color: #dae1e7;
   margin: auto;
   padding: 10px;
 }
 
-.dropdown-item {
+.custom-dropdown-item-healthcare {
   display: block;
   font-size: 15px;
   color:#112031;
@@ -50,7 +77,7 @@ body {
   text-align: center;
 }
 
-.dropdown-menu a:hover{
+.custom-dropdown-menu-healthcare a:hover{
   color: #000000;
   font-weight: bold
 }
@@ -74,6 +101,23 @@ tr:first-child th {
 .table i {
   color: #152d35;
 }
+
+.profile-pic {
+  width: 240px;
+  height: 170px;
+  border-radius: 100%;
+}
+
+.function-button{
+
+  margin-top: 30px;
+  color: #112031;
+  background-color: #d4ecdd;
+  border: 6px solid #112031;
+  border-radius: 20px;
+}
+
+
 
 /* Navigation bar style elements */
 
@@ -109,11 +153,11 @@ nav {
   color: #19456b;
 }
 
-.custom-dropdown-menu {
+.custom-nav-dropdown-menu {
   background-color: #152d35;
 }
 
-.custom-dropdown-menu .dropdown-item:hover {
+.custom-nav-dropdown-menu .dropdown-item:hover {
   background-color: #345b63;
   color: #f8f1f1;
 }
@@ -124,13 +168,7 @@ nav {
 
 
 
-
 /* Popup content */
-.center {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-}
 
 .popup-overlay {
   position: fixed;
@@ -142,6 +180,8 @@ nav {
   background: rgba(0, 0, 0, 0.5);
   display: none;
 }
+
+
 .popup {
   position: absolute;
   top: -150%;
@@ -164,6 +204,7 @@ body.showPopUp .popup {
   opacity: 1;
   transform: translate(-50%, -50%) scale(1);
 }
+
 .popup .popup-close {
   position: absolute;
   top: -10px;
@@ -196,6 +237,20 @@ body.showPopUp .popup {
   color: #222;
   padding: 0%;
 }
+
+.popup.batch-info {
+  width: 750px;
+  height: 500px;
+}
+
+.popup table {
+  margin: auto;
+  max-height: 200px;
+  overflow: auto;
+  display: block;
+  width: 80%;
+}
+
 
 /* Popup content for record vaccine batch */
 
@@ -272,9 +327,12 @@ body.showPopUp .popup {
 }
 
 
-.login-form {
-  display: inline-block;
-  width: 40%;
+.copyright{
+
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 @media (max-width: 1000px) {

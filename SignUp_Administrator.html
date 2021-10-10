@@ -96,13 +96,13 @@
         <!-- dropdown menu for healthcare centre -->   
         <h5 class="mt-3 instruction">Select a centre:</h5>       
         <div class="mb-2 dropdown">
-          <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <button class="btn btn-secondary btn-lg dropdown-toggle custom-dropdown-toggle-healthcare" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Healthcare Centre ↓
           </button>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="#" onclick="openLoginForm()">Donda Medical Centre > </a>
-            <a class="dropdown-item" href="#">APLJ Medical Centre > </a>
-            <a class="dropdown-item" href="#">MoonWay Medical Centre > </a>
+          <div class="dropdown-menu custom-dropdown-menu-healthcare">
+            <a class="dropdown-item custom-dropdown-item-healthcare" href="#" onclick="openPopUp()">Donda Medical Centre > </a>
+            <a class="dropdown-item custom-dropdown-item-healthcare" href="#">APLJ Medical Centre > </a>
+            <a class="dropdown-item custom-dropdown-item-healthcare" href="#">MoonWay Medical Centre > </a>
           </div>
         </div> 
 
@@ -177,7 +177,7 @@
     <!-- Pop-up window showing centre details-->
     <div class="popup-overlay"></div>
     <div class="popup">
-      <div class="popup-close" onclick="closeLoginForm()">&times;</div>
+      <div class="popup-close" onclick="closePopUp()">&times;</div>
       <h3 class="header">Healthcare Centre Details</h3>
     
       <div class="element_1">
