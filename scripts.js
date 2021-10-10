@@ -9,4 +9,3 @@ function openLoginForm(){
 function closeLoginForm(){
     document.body.classList.remove("showPopUp");
   }
-
