@@ -180,7 +180,6 @@ body.showPopUp .popup {
 }
 
 .popup .header {
-
   font-family: "Montserrat", sans-serif;
   text-align: center;
   font-size: 20px;
@@ -189,14 +188,13 @@ body.showPopUp .popup {
   margin: 20px 0px;
 }
 
-.popup .information{
+.popup .information {
   display: block;
   text-align: center;
   font-size: 1rem;
   font-weight: 300;
   color: #222;
   padding: 0%;
-
 }
 
 /* Popup content for record vaccine batch */
@@ -219,7 +217,7 @@ body.showPopUp .popup {
   background: #eee;
   border-radius: 5px;
 }
-.popup .form .element button.record{
+.popup .form .element button.record {
   margin: auto;
   margin-top: 0px;
   display: block;
@@ -252,8 +250,8 @@ body.showPopUp .popup {
   color: #112031;
   margin-bottom: 50px;
   text-align: center;
-  font-weight: bold;
-  font-family: 'Courier New', Courier, monospace;
+  font-weight: 300;
+  font-family: "Work Sans", sans-serif;
 }
 
 .popup .element_1 button.selectCentre{
@@ -279,8 +277,26 @@ body.showPopUp .popup {
   width: 40%;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1000px) {
   .login-form {
     width: 50%;
   }
+
+  .function-button{
+    margin: auto;
+    width: 60%;
+  }
+}
+
+@media (max-width: 600px) {
+  .function-button {
+    margin: auto;
+    width: 60%;
+  }
+}
+
+.Patient_profile-pic {
+  display: block;
+  width: 100%;
+  height: auto;
 }
