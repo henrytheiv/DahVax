@@ -19,6 +19,12 @@ body {
   text-align: center;
 }
 
+.page-description {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1rem;
+  text-align: center;
+}
+
 .centreNamepage- {
   font-family: "Montserrat", sans-serif;
   font-size: 1rem;
@@ -27,100 +33,9 @@ body {
   text-align: center;
 }
 
-.sign-up-icon{
-
-  color: #112031;
-  cursor: pointer;
-  
-}
-
-.login-form {
-  display: inline-block;
-  width: 40%;
-}
-
-.sign-up-form{
-
-  margin: auto;
-  display: block;
-  width:50%;
-}
-
-.sign-up-form button{
-
-  margin: auto;
-  display: block;
-
-}
-
-
-/* Drop dowm menu for centre in signUp page */
-
-.custom-dropdown-toggle-healthcare{
-  background-color: white;
-  color: #112031;
-  font-size: 1.1rem;
-  margin-top: 1px;
-}
-
-.custom-dropdown-menu-healthcare{
-  background-color: #dae1e7;
-  margin: auto;
-  padding: 10px;
-}
-
-.custom-dropdown-item-healthcare {
-  display: block;
-  font-size: 15px;
-  color:#112031;
-  margin-bottom: 5px;
-  text-align: center;
-}
-
-.custom-dropdown-menu-healthcare a:hover{
-  color: #000000;
-  font-weight: bold
-}
-
-.instruction {
-  font-family: "Work Sans", sans-serif;
-  font-size: 1.3rem;
-  font-weight: 300;
-  margin: 20px 0 30px 0;
-}
-
-tr:first-child th {
-  background: #112031;
-  color: #d4ecdd;
-}
-
-.table {
-  font-size: 1.1rem;
-}
-
-.table i {
-  color: #152d35;
-}
-
-.profile-pic {
-  width: 240px;
-  height: 170px;
-  border-radius: 100%;
-}
-
-.function-button{
-
-  margin-top: 30px;
-  color: #112031;
-  background-color: #d4ecdd;
-  border: 6px solid #112031;
-  border-radius: 20px;
-}
-
 
 
 /* Navigation bar style elements */
-
 nav {
   padding: 5% 7%;
 }
@@ -168,8 +83,121 @@ nav {
 
 
 
-/* Popup content */
+/* the 2 user icons */
+.sign-up-icon{
+  color: #112031;
+  cursor: pointer;
+}
 
+/* hover to the 2 icons */
+.sign-up-icon:hover{
+  color: #0000cd;
+}
+
+/* 2 texts under the icon */
+.sign-up-icon-text{
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.login-form {
+  display: inline-block;
+  width: 40%;
+}
+
+.sign-up-form{
+  margin: auto;
+  display: block;
+  width:50%;
+}
+
+.sign-up-form button{
+  margin: auto;
+  display: block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Drop dowm menu for centre in signUp page */
+.custom-dropdown-toggle-healthcare{
+  background-color: white;
+  color: #112031;
+  font-size: 1.1rem;
+  margin-top: 1px;
+}
+
+.custom-dropdown-menu-healthcare{
+  background-color: #dae1e7;
+  margin: auto;
+  padding: 10px;
+}
+
+.custom-dropdown-item-healthcare {
+  display: block;
+  font-size: 15px;
+  color:#112031;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.custom-dropdown-menu-healthcare a:hover{
+  color: #000000;
+  font-weight: bold
+}
+
+.instruction {
+  font-family: "Work Sans", sans-serif;
+  font-size: 1rem;
+  font-weight: 300;
+  margin: 20px 0 30px 0;
+  text-align: left;
+}
+
+tr:first-child th {
+  background: #112031;
+  color: #d4ecdd;
+}
+
+.table {
+  font-size: 1.1rem;
+}
+
+.table i {
+  color: #152d35;
+}
+
+.profile-pic {
+  width: 240px;
+  height: 170px;
+  border-radius: 100%;
+}
+
+.function-button{
+
+  margin-top: 30px;
+  color: #112031;
+  background-color: #d4ecdd;
+  border: 6px solid #112031;
+  border-radius: 20px;
+}
+
+
+
+
+/* Popup content */
 .popup-overlay {
   position: fixed;
   top: 0px;
@@ -196,6 +224,7 @@ nav {
   border-radius: 20px;
   transition: transform 300ms ease-in-out, opacity 300ms ease-in-out;
 }
+
 body.showPopUp .popup-overlay {
   display: block;
 }
@@ -252,6 +281,150 @@ body.showPopUp .popup {
 }
 
 
+
+/* Pop up for admin sign up form */
+body.showPopUp-admin-sign-up .popup-overlay-admin-sign-up {
+  display: block;
+}
+body.showPopUp-admin-sign-up .popup-admin-sign-up {
+  top: 60%;
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.popup-overlay-admin-sign-up {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100vh;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+}
+
+
+.popup-admin-sign-up {
+  position: absolute;
+  top: -150%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.15);
+  width: 650px;
+  height: 600px;
+  background: #f5f5f5;
+  z-index: 2;
+  opacity: 0;
+  box-shadow: 10px 10px 5px #112031;
+  border-radius: 20px;
+  transition: transform 300ms ease-in-out, opacity 300ms ease-in-out;
+}
+
+.popup-admin-sign-up .popup-close {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 40px;
+  height: 40px;
+  background: #555;
+  color: #f5f5f5;
+  font-size: 25px;
+  font-weight: 600;
+  text-align: center;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.popup-admin-sign-up .header {
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+  font-size: 25px;
+  font-weight: 500;
+  color: #112031;
+  margin: 20px 0px;
+}
+
+
+/* Pop up for patient sign up form */
+body.showPopUp-patient-sign-up .popup-overlay-patient-sign-up {
+  display: block;
+}
+body.showPopUp-patient-sign-up .popup-patient-sign-up {
+  top: 60%;
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.popup-overlay-patient-sign-up {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100vh;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+}
+
+
+.popup-patient-sign-up {
+  position: absolute;
+  top: -150%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.15);
+  width: 650px;
+  height: 500px;
+  background: #f5f5f5;
+  z-index: 2;
+  opacity: 0;
+  box-shadow: 10px 10px 5px #112031;
+  border-radius: 20px;
+  transition: transform 300ms ease-in-out, opacity 300ms ease-in-out;
+}
+
+.popup-patient-sign-up .popup-close {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 40px;
+  height: 40px;
+  background: #555;
+  color: #f5f5f5;
+  font-size: 25px;
+  font-weight: 600;
+  text-align: center;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.popup-patient-sign-up .header {
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+  font-size: 25px;
+  font-weight: 500;
+  color: #112031;
+  margin: 20px 0px;
+}
+
+
+/* pop up content for centre name and address in request vaccine */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* Popup content for record vaccine batch */
 
 .popup .form .element {
@@ -289,8 +462,25 @@ body.showPopUp .popup {
   color: #d4ecdd;
 }
 
-/* Popup content for show healthcare centre */
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Popup content for show healthcare centre */
 .popup .element_1 label {
   display: block;
   font-size: 20px;
@@ -353,8 +543,155 @@ body.showPopUp .popup {
   }
 }
 
-.Patient_profile-pic {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Pop up for 1st Pop-up in RequestVaccineAppointment.html */
+/* START */
+body.showPopUp-requestvaccine-centre .popup-overlay-requestvaccine-centre {
   display: block;
-  width: 100%;
-  height: auto;
 }
+body.showPopUp-requestvaccine-centre .popup-requestvaccine-centre {
+  top: 60%;
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.popup-overlay-requestvaccine-centre {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100vh;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+}
+
+
+.popup-requestvaccine-centre {
+  position: absolute;
+  top: -150%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.15);
+  width: 900px;
+  height: 800px;
+  overflow: auto;
+  background: #f5f5f5;
+  z-index: 2;
+  opacity: 0;
+  box-shadow: 10px 10px 5px #112031;
+  border-radius: 20px;
+  transition: transform 300ms ease-in-out, opacity 300ms ease-in-out;
+}
+
+.popup-requestvaccine-centre .popup-close {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 40px;
+  height: 40px;
+  background: #555;
+  color: #f5f5f5;
+  font-size: 25px;
+  font-weight: 600;
+  text-align: center;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.popup-requestvaccine-centre .header {
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+  font-size: 25px;
+  font-weight: 500;
+  color: #112031;
+  margin: 20px 0px;
+}
+
+.popup-requestvaccine-centre .des-RequestVaccine1{
+  text-align: center;
+}
+/* END */
+
+/* Batch No table in RequestVaccineAppointment.html */
+/* START */
+#BatchNo-table {
+  width: 100%;
+  padding: 50px 0;
+  text-align: center;
+  margin-top: 20px;
+}
+
+/*the batch No. table is hidden before centre is being selected */
+.hidden {
+  display:none;
+}
+
+.horizontal-line{
+  border: 1px solid #112031;
+}
+
+.table-batchNo{
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1.1rem
+}
+
+.table-batchNo th{
+  text-align: left;
+  background: #112031;
+  color: #d4ecdd;
+  padding: 10px;
+}
+
+.table-batchNo td{
+  text-align: left;
+  padding: 10px;
+}
+
+.table-batchNo tr:hover {
+  background-color: #D6D6D6;
+}
+/*End*/
+
+/* AppointmentDate in RequestVaccineAppointment.html */
+/* START */
+#AppointmentDate {
+  text-align: center;
+  margin: auto;
+}
+
+
+
+.appointment-form .element record{
+  margin: auto;
+  margin-top: 0px;
+  display: block;
+  width: 30%;
+  padding: 5px 0px;
+  text-transform: uppercase;
+  outline: none;
+  border: none;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 5px;
+  cursor: pointer;
+  background: #112031;
+  color: #d4ecdd;
+}
+
+
+
