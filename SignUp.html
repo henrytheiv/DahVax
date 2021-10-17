@@ -56,36 +56,17 @@
     <!-- navigation bar with Logo and log out icon -->
     <nav class="navbar navbar-expand-lg custom-navbar" id="navbarNav">
       <span class="navbar-brand mb-0 h1">DahVax</span>
-      <button
-        class="navbar-toggler custom-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarTogglerDemo01"
-        aria-controls="navbarTogglerDemo01"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link" href=""> Log Out 
-              <i class="fas fa-sign-out-alt">
-              </i>
-            </a>
-          </li>
-        </ul>
-      </div>
     </nav>
 
     <h2 class="mb-3 page-title">Sign Up</h2>
-    <h4 class="mb-5 page-description">Select user type by clicking the user icon</h4>
+    <h4 class="mb-5 page-description">
+      Select user type by clicking the user icon
+    </h4>
 
     <!-- 2 user icons Patient and Administrator-->
     <div class="container">
       <div class="row justify-content-center">
-        <div class="col-lg-3 text-center" onclick="openPatientSignUpForm()">
+        <div class="col-lg-3 text-center" onclick="openPopUp()">
           <i class="fas fa-user fa-10x sign-up-icon"></i>
           <h3 class="sign-up-icon-text">Patient</h3>
         </div>
@@ -97,75 +78,65 @@
     </div>
 
     <!-- Pop-up window patient sign up form -->
-    <div class="popup-overlay-patient-sign-up"></div>
-    <div class="popup-patient-sign-up">
-      <div class="popup-close" onclick="closePatientSignUpForm()">&times;</div>
+    <div class="popup-overlay patient-sign-up"></div>
+    <div class="popup patient-sign-up">
+      <div class="popup-close" onclick="closePopUp()">&times;</div>
       <h2 class="text-center mb-3 header">Sign up Patient</h2>
       <h5 class="page-description">Kindly fill up all the details</h5>
-      <form class="sign-up-form">
-        <!-- text box for username -->
-        <div class="form-floating">
-          <input
-            type="text"
-            class="form-control"
-            id="floatingInput"
-            placeholder="Username"
-          />
-          <label for="floatingInput">Username</label>
-        </div>
-
-        <!-- text box for password -->
-        <div class="form-floating mt-2">
-          <input
-            type="password"
-            class="form-control"
-            id="floatingPassword"
-            placeholder="Password"
-          />
-          <label for="floatingPassword">Password</label>
-        </div>
-
-        <!-- text box for fullname -->
-        <div class="form-floating mt-2">
-          <input
-            type="text"
-            class="form-control"
-            id="floatingInput"
-            placeholder="fullname"
-          />
-          <label for="floatingInput">Full name</label>
-        </div>
-
-        <!-- text box for email -->
-        <div class="form-floating mt-2">
-          <input
-            type="email"
-            class="form-control"
-            id="floatingInput"
-            placeholder="email"
-          />
-          <label for="floatingInput">Email</label>
-        </div>
-
-        <!-- text box for ICPassport -->
-        <div class="form-floating mt-2">
-          <input
-            type="text"
-            class="form-control"
-            id="floatingInput"
-            placeholder="ICPassport"
-          />
-          <label for="floatingPassword">IC/Passport No.</label>
-        </div>
-
-        <!-- Sign Up Button -->
-        <button class="w-50 btn btn-md btn-primary mt-3" type="submit">
-          Sign Up
-        </button>
-      </form>
+      <div class="container form-container">
+        <form id="patient-sign-up-form" class="validation-form sign-up-form">
+          <!-- patient sign up form -->
+          <div class="form-control">
+            <label for="username">Username</label>
+            <input type="text" placeholder="username" id="patientUsername" />
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation-circle"></i>
+            <small>Error message</small>
+          </div>
+          <div class="form-control">
+            <label for="username">Email</label>
+            <input
+              type="email"
+              placeholder="xxx@urmail.com"
+              id="patientEmail"
+            />
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation-circle"></i>
+            <small>Error message</small>
+          </div>
+          <div class="form-control">
+            <label for="username">Password</label>
+            <input
+              type="password"
+              placeholder="password"
+              id="patientPassword"
+            />
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation-circle"></i>
+            <small>Error message</small>
+          </div>
+          <div class="form-control">
+            <label for="username">Full Name</label>
+            <input type="text" placeholder="fullName" id="patientFullname" />
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation-circle"></i>
+            <small>Error message</small>
+          </div>
+          <div class="form-control">
+            <label for="username">ICPassport No.</label>
+            <input
+              type="text"
+              placeholder="eg. xxxxxx-xx-xxxx"
+              id="patientIcpassport"
+            />
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation-circle"></i>
+            <small>Error message</small>
+          </div>
+          <button onclick="patientSignUpValidation()">Sign Up</button>
+        </form>
+      </div>
     </div>
-
-
 
     <!-- Pop-up window for administrator sign up form-->
     <div class="popup-overlay-admin-sign-up"></div>
@@ -173,10 +144,6 @@
       <div class="popup-close" onclick="closeAdminSignUpForm()">&times;</div>
       <h2 class="text-center mb-3 header">Sign up Administrator</h2>
       <h5 class="page-description">Kindly fill up all the details</h5>
-
-
-
-
 
       <!-- dropdown menu button for healthcare centre -->
       <h3 class="instruction text-center mb-0">Select a centre:</h3>
@@ -195,10 +162,11 @@
           Healthcare Centre ↓
         </button>
 
-
         <div class="dropdown-menu custom-dropdown-menu-healthcare">
-          <a class="dropdown-item custom-dropdown-item-healthcare" href="#"
-            onclick="openCentreName()"
+          <a
+            class="dropdown-item custom-dropdown-item-healthcare"
+            href="#"
+            onclick="centreDetails()"
             >Donda Medical Centre >
           </a>
 
@@ -211,80 +179,120 @@
         </div>
       </div>
 
-      <!-- message below centre dropdown menu -->
-      <p class="mt-1 text-center">
-        Healthcare centre is not listed? <a href="#">Add Centre</a>
-      </p>
+      <!-- message below sign in button -->
+      <!-- a pop up to allow admin add new centre -->
+      <div class="clickable" onclick="openNewCentre()">
+        <p class="mt-1 text-center">
+          add a new centre
+          <i class="fas fa-plus-square fa-1x"></i>
+        </p>
+      </div>
 
-      <form class="sign-up-form">
-        <!-- text box for username -->
-        <div class="form-floating">
-          <input
-            type="text"
-            class="form-control"
-            id="floatingInput"
-            placeholder="Username"
-          />
-          <label for="floatingInput">Username</label>
+      <!-- Pop-up window for administrator sign up form-->
+      <div class="popup-overlay-add-new-centre"></div>
+      <div class="popup-add-new-centre">
+        <div class="popup-close" onclick="closeNewCentre()">&times;</div>
+        <h2 class="text-center mb-3 header">Add New Centre</h2>
+
+        <div class="container form-container">
+          <form id="new-centre-form" class="validation-form">
+            <div class="element">
+              <div class="form-control">
+                <label for="centrename">Centre Name:</label>
+                <input
+                  type="text"
+                  placeholder="new centre name"
+                  id="centreName"
+                />
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <small>Error message</small>
+              </div>
+            </div>
+            <div class="element">
+              <div class="form-control">
+                <label for="address">Address:</label>
+                <input type="text" placeholder="new address" id="address" />
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <small>Error message</small>
+              </div>
+            </div>
+            <div class="element">
+              <button class="add" onclick="addCentreValidation()">Add</button>
+            </div>
+          </form>
         </div>
+      </div>
 
-        <!-- text box for password -->
-        <div class="form-floating mt-1">
-          <input
-            type="password"
-            class="form-control"
-            id="floatingPassword"
-            placeholder="Password"
-          />
-          <label for="floatingPassword">Password</label>
-        </div>
+      <!-- after user choose a centre then come to here -->
+      <!-- this was initailly hidden -->
+      <!-- it will shows under healthcare centre dropdown -->
+      <div id="centreDetails" class="hidden">
+        <hr class="horizontal-line" />
+        <!-- Title -->
+        <h5 class="page-description">Name:</h5>
+        <h4 class="centreDetails">Donda Medical Centre</h4>
+        <br />
+        <!-- description -->
+        <h5 class="page-description">Address:</h5>
+        <h4 class="centreDetails">
+          69, Jalan Ye Bandar Maju 47500 Petaling Jaya
+        </h4>
+      </div>
 
-        <!-- text box for fullname -->
-        <div class="form-floating mt-1">
-          <input
-            type="text"
-            class="form-control"
-            id="floatingInput"
-            placeholder="fullname"
-          />
-          <label for="floatingInput">Full name</label>
-        </div>
+      <!-- Sign up form for admin -->
+      <div class="container form-container">
+        <form id="admin-sign-up-form" class="validation-form sign-up-form">
+          <div class="form-control">
+            <label for="username">Username</label>
+            <input type="text" placeholder="username" id="adminUsername" />
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation-circle"></i>
+            <small>Error message</small>
+          </div>
 
-        <!-- text box for email -->
-        <div class="form-floating mt-1">
-          <input
-            type="email"
-            class="form-control"
-            id="floatingInput"
-            placeholder="email"
-          />
-          <label for="floatingInput">Email</label>
-        </div>
+          <div class="form-control">
+            <label for="username">Password</label>
+            <input type="password" placeholder="password" id="adminPassword" />
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation-circle"></i>
+            <small>Error message</small>
+          </div>
 
-        <!-- text box for StaffID -->
-        <div class="form-floating mt-1">
-          <input
-            type="text"
-            class="form-control"
-            id="floatingInput"
-            placeholder="staffID"
-          />
-          <label for="floatingPassword">Staff ID</label>
-        </div>
+          <div class="form-control">
+            <label for="username">Email</label>
+            <input type="email" placeholder="xxx@mail.com" id="adminEmail" />
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation-circle"></i>
+            <small>Error message</small>
+          </div>
 
-        <!-- Sign Up Button -->
-        <button class="w-50 btn btn-lg btn-primary mt-4" type="submit">
-          Sign Up
-        </button>
-      </form>
+          <div class="form-control">
+            <label for="username">Full Name</label>
+            <input type="text" placeholder="full name" id="adminFullname" />
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation-circle"></i>
+            <small>Error message</small>
+          </div>
+
+          <div class="form-control">
+            <label for="username">Staff ID</label>
+            <input type="text" placeholder="staff id" id="adminStaffID" />
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation-circle"></i>
+            <small>Error message</small>
+          </div>
+
+          <button onclick="adminSignUpValidation()">Sign Up</button>
+        </form>
+      </div>
     </div>
 
     <!-- message below sign in button -->
     <p class="mt-5 text-center">
       Already have an account? <a href="index.html">Log In</a>
     </p>
-
-
 
     <footer>
       <p class="text-muted copyright">&copy; DahVax 2021</p>

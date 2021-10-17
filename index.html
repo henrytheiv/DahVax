@@ -59,8 +59,8 @@
     <h2 class="page-title">Sign In</h2>
 
     <!-- Log in form-->
-    <div class="container login-form-container">
-      <form id="form" class="login-form">
+    <div class="container form-container">
+      <form id="form" class="validation-form">
         <div class="form-control">
           <label for="username">Username</label>
           <input type="text" placeholder="Username" id="username"  />
@@ -77,9 +77,11 @@
           <small>Error message</small>
         </div>
         
-        <button>Sign In</button>
+        <button onclick="loginValidation()">Sign In</button>
       </form>
     </div>
+
+    <p class="text-center mt-2">Doesn't have an account? <a href="SignUp.html">Sign up here</a></p>
 
     <footer>
       <p class="text-muted copyright">&copy; DahVax 2021</p>

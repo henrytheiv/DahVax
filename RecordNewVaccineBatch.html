@@ -51,7 +51,7 @@
       rel="stylesheet"
     />
   </head>
-  <body>
+  <body  onload="newBatchValidation()">
     <nav class="navbar navbar-expand-lg custom-navbar" id="navbarNav">
       <span class="navbar-brand mb-0 h1">DahVax</span>
       <button
@@ -87,7 +87,9 @@
                 <a class="dropdown-item" href="AdminMenu.html"
                   >Dashboard <i class="fas fa-user"></i
                 ></a>
-                <a class="dropdown-item" href="#">View Vaccine Batch Info</a>
+                <a class="dropdown-item" href="ViewVaccineBatchInfo.html"
+                  >View Vaccine Batch Info</a
+                >
               </div>
             </div>
           </li>
@@ -107,68 +109,80 @@
     <div class="container mt-3">
       <h3 class="instruction">Select a vaccine to record new batch:</h3>
 
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th scope="col">Vaccine ID</th>
-            <th scope="col">Vaccine Name</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>V110</td>
-            <td>Pfizer</td>
-            <td>
-              <i class="fas fa-plus-square fa-2x" onclick="openPopUp()"></i>
-            </td>
-          </tr>
-          <tr>
-            <td>V111</td>
-            <td>Sinovac</td>
-            <td>
-              <i class="fas fa-plus-square fa-2x"></i>
-            </td>
-          </tr>
-          <tr>
-            <td>V112</td>
-            <td>Astra Zeneca</td>
-            <td>
-              <a href=""><i class="fas fa-plus-square fa-2x"></i></a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="scrollable">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Vaccine ID</th>
+              <th scope="col">Vaccine Name</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>V110</td>
+              <td>Pfizer</td>
+              <td>
+                <i class="fas fa-plus-square fa-2x" onclick="openPopUp()"></i>
+              </td>
+            </tr>
+            <tr>
+              <td>V111</td>
+              <td>Sinovac</td>
+              <td>
+                <i class="fas fa-plus-square fa-2x"></i>
+              </td>
+            </tr>
+            <tr>
+              <td>V112</td>
+              <td>Astra Zeneca</td>
+              <td>
+                <i class="fas fa-plus-square fa-2x"></i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
     <!-- Pop-up window -->
     <div class="popup-overlay"></div>
-    <div class="popup">
+    <div class="popup record-new-batch">
       <div class="popup-close" onclick="closePopUp()">&times;</div>
       <h3 class="header">Record New Batch:</h3>
       <div class="information">
         <p>Vaccine Name</p>
         <p>Manufacturer</p>
       </div>
-      <div class="form">
-        <div class="element">
-          <label for="batchNo">Batch no.:</label>
-          <input type="text" id="batchNo" />
-        </div>
-        <div class="element">
-          <label for="expiryDate">Expiry date:</label>
-          <input type="date" id="expiryDate" />
-        </div>
-        <div class="element">
-          <label for="quantiy">Quantity of doses available:</label>
-          <input type="number" id="quantity" />
-        </div>
-        <div class="element">
-          <button class="record">Record</button>
-        </div>
+      <div class="container form-container">
+        <form id="form" class="validation-form">
+          <div class="form-control">
+            <label for="batchNo">Batch no.:</label>
+            <input type="text" placeholder="BXXX" id="batchNo" />
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation-circle"></i>
+            <small>Error message</small>
+          </div>
+          <div class="form-control">
+            <label for="expiryDate">Expiry date:</label>
+            <input type="date" id="expiryDate" />
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation-circle"></i>
+            <small>Error message</small>
+          </div>
+          <div class="form-control">
+            <label for="quantiy">Quantity of doses available:</label>
+            <input type="number" id="quantity" />
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation-circle"></i>
+            <small>Error message</small>
+          </div>
+
+          <button>Record</button>
+        </form>
       </div>
     </div>
-    
+
     <footer>
       <p class="text-muted copyright">&copy; DahVax 2021</p>
     </footer>
