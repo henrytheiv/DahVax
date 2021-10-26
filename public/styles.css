@@ -171,12 +171,12 @@ nav {
   position: absolute;
   bottom: 0;
   left: 15px;
-  visibility: hidden;
 }
 
-.validation-form .form-control.error small {
+
+/* .validation-form .form-control.error small {
   visibility: visible;
-}
+} */
 
 .validation-form button {
   background-color: #112031;

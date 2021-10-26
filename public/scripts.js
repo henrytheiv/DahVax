@@ -23,14 +23,6 @@ function closeAdminSignUpForm() {
 }
 
 //the pop up for administrator to record new vaccine (OPEN)
-function openPopUp() {
-  document.body.classList.add("showPopUp");
-
-  clearBatchInputs();
-  Array.from(document.querySelectorAll(".form-control")).forEach((el) =>
-    el.classList.remove("success")
-  );
-}
 
 //the pop up for administrator to record new vaccine (CLOSE)
 function closePopUp() {
@@ -119,17 +111,17 @@ function checkLoginDetails() {
   }
 }
 
-function setErrorFor(input, message) {
-  const formControl = input.parentElement;
-  const small = formControl.querySelector("small");
-  formControl.className = "form-control error";
-  small.innerText = message;
-}
+// function setErrorFor(input, message) {
+//   const formControl = input.parentElement;
+//   const small = formControl.querySelector("small");
+//   formControl.className = "form-control error";
+//   small.innerText = message;
+// }
 
-function setSuccessFor(input) {
-  const formControl = input.parentElement;
-  formControl.className = "form-control success";
-}
+// function setSuccessFor(input) {
+//   const formControl = input.parentElement;
+//   formControl.className = "form-control success";
+// }
 
 function patientSignUpValidation() {
   var patientSignUpForm = document.getElementById("patient-sign-up-form");
@@ -301,7 +293,7 @@ function newBatchValidation() {
   var expiryDate = document.getElementById("expiryDate");
   var quantity = document.getElementById("quantity");
 
-  form.addEventListener("submit", (e) => {
+  form.addEventListener("add", (e) => {
     e.preventDefault();
     checkBatchInfo();
     alert("Recorded successfully!");
@@ -361,8 +353,30 @@ function requestVaccinationAppointment() {
   location.href = "PatientMenu.html";
 }
 
-function saveVaccineForNewBatch(elem) {
-  var id = $(elem).find(".vaccineID").text();
+// function saveVaccineForNewBatch(elem) {
+//   var id = $(elem).find(".vaccineID").text();
 
-  alert(id);
+//   alert(id);
+// }
+
+
+
+// $(".menu-btn").click(function (event) {
+//   event.stopPropagation();
+//   $(".menu-window").toggle(function () {
+//     // get the last value saved and inverts the value
+//     var isOpen = sessionStorage.getItem("opened");
+//     if (isOpen && isOpen === "no") {
+//       sessionStorage.setItem("opened", "yes");
+//     } else {
+//       sessionStorage.setItem("opened", "no");
+//     }
+//   });
+// });
+
+function openPopUp() {
+  document.body.classList.add("showPopUp");
+  
 }
+
+

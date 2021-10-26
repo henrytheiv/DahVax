@@ -1,6 +1,3 @@
-<!--Pop up for centre name havent done-->
-<!--Pop up for add centre havent done-->
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -84,11 +81,13 @@
       <h2 class="text-center mb-3 header">Sign up Patient</h2>
       <h5 class="page-description">Kindly fill up all the details</h5>
       <div class="container form-container">
-        <form id="patient-sign-up-form" class="validation-form sign-up-form">
+
+        <!-- once patient sign up then go to send.php -->
+        <form id="patient-sign-up-form" class="validation-form sign-up-form"  method="post" action="send.php">
           <!-- patient sign up form -->
           <div class="form-control">
             <label for="username">Username</label>
-            <input type="text" placeholder="username" id="patientUsername" />
+            <input type="text" placeholder="username" id="patientUsername" name="username"/>
             <i class="fas fa-check-circle"></i>
             <i class="fas fa-exclamation-circle"></i>
             <small>Error message</small>
@@ -96,10 +95,7 @@
           <div class="form-control">
             <label for="username">Email</label>
             <input
-              type="email"
-              placeholder="xxx@urmail.com"
-              id="patientEmail"
-            />
+              type="email" placeholder="xxx@urmail.com" id="patientEmail" name="email"/>
             <i class="fas fa-check-circle"></i>
             <i class="fas fa-exclamation-circle"></i>
             <small>Error message</small>
@@ -107,17 +103,14 @@
           <div class="form-control">
             <label for="username">Password</label>
             <input
-              type="password"
-              placeholder="password"
-              id="patientPassword"
-            />
+              type="password" placeholder="password" id="patientPassword" name="password"/>
             <i class="fas fa-check-circle"></i>
             <i class="fas fa-exclamation-circle"></i>
             <small>Error message</small>
           </div>
           <div class="form-control">
             <label for="username">Full Name</label>
-            <input type="text" placeholder="fullName" id="patientFullname" />
+            <input type="text" placeholder="fullName" id="patientFullname" name="fullname"/>
             <i class="fas fa-check-circle"></i>
             <i class="fas fa-exclamation-circle"></i>
             <small>Error message</small>
@@ -125,18 +118,23 @@
           <div class="form-control">
             <label for="username">ICPassport No.</label>
             <input
-              type="text"
-              placeholder="eg. xxxxxx-xx-xxxx"
-              id="patientIcpassport"
-            />
+              type="text" placeholder="eg.xxxxxx-xx-xxxx" id="patientIcpassport" name="icpassport"/>
             <i class="fas fa-check-circle"></i>
             <i class="fas fa-exclamation-circle"></i>
             <small>Error message</small>
           </div>
-          <button onclick="patientSignUpValidation()">Sign Up</button>
+          <!-- The sign up button for patient  -->
+          <button type="submit" form="patient-sign-up-form" name="btn" value="submit">Sign Up</button>
         </form>
       </div>
     </div>
+
+
+
+
+
+
+    
 
     <!-- Pop-up window for administrator sign up form-->
     <div class="popup-overlay-admin-sign-up"></div>
@@ -195,15 +193,14 @@
         <h2 class="text-center mb-3 header">Add New Centre</h2>
 
         <div class="container form-container">
-          <form id="new-centre-form" class="validation-form">
+          
+          <form id="new-centre-form" class="validation-form" method="post" action="sendCentre.php">
             <div class="element">
               <div class="form-control">
                 <label for="centrename">Centre Name:</label>
                 <input
                   type="text"
-                  placeholder="new centre name"
-                  id="centreName"
-                />
+                  placeholder="new centre name" id="centreName" name="centreName"/>
                 <i class="fas fa-check-circle"></i>
                 <i class="fas fa-exclamation-circle"></i>
                 <small>Error message</small>
@@ -212,14 +209,15 @@
             <div class="element">
               <div class="form-control">
                 <label for="address">Address:</label>
-                <input type="text" placeholder="new address" id="address" />
+                <input type="text" placeholder="new address" id="address" name="address"/>
                 <i class="fas fa-check-circle"></i>
                 <i class="fas fa-exclamation-circle"></i>
                 <small>Error message</small>
               </div>
             </div>
             <div class="element">
-              <button class="add" onclick="addCentreValidation()">Add</button>
+              <button type="submit" form="new-centre-form" name="btn" value="submit">Add</button>
+              <!-- <button class="add" onclick="addCentreValidation()">Add</button> -->
             </div>
           </form>
         </div>
@@ -241,12 +239,20 @@
         </h4>
       </div>
 
+
+
+
+
+
+
+
       <!-- Sign up form for admin -->
       <div class="container form-container">
-        <form id="admin-sign-up-form" class="validation-form sign-up-form">
+        <!-- once admin sign up then go to sendAdmin.php -->
+        <form id="admin-sign-up-form" class="validation-form sign-up-form" method="post" action="sendAdmin.php">
           <div class="form-control">
             <label for="username">Username</label>
-            <input type="text" placeholder="username" id="adminUsername" />
+            <input type="text" placeholder="username" id="adminUsername" name="adminUsername" />
             <i class="fas fa-check-circle"></i>
             <i class="fas fa-exclamation-circle"></i>
             <small>Error message</small>
@@ -254,7 +260,7 @@
 
           <div class="form-control">
             <label for="username">Password</label>
-            <input type="password" placeholder="password" id="adminPassword" />
+            <input type="password" placeholder="password" id="adminPassword" name="adminPassword" />
             <i class="fas fa-check-circle"></i>
             <i class="fas fa-exclamation-circle"></i>
             <small>Error message</small>
@@ -262,7 +268,7 @@
 
           <div class="form-control">
             <label for="username">Email</label>
-            <input type="email" placeholder="xxx@mail.com" id="adminEmail" />
+            <input type="email" placeholder="xxx@mail.com" id="adminEmail" name="adminEmail"/>
             <i class="fas fa-check-circle"></i>
             <i class="fas fa-exclamation-circle"></i>
             <small>Error message</small>
@@ -270,7 +276,7 @@
 
           <div class="form-control">
             <label for="username">Full Name</label>
-            <input type="text" placeholder="full name" id="adminFullname" />
+            <input type="text" placeholder="full name" id="adminFullname" name="adminFullname" />
             <i class="fas fa-check-circle"></i>
             <i class="fas fa-exclamation-circle"></i>
             <small>Error message</small>
@@ -278,20 +284,21 @@
 
           <div class="form-control">
             <label for="username">Staff ID</label>
-            <input type="text" placeholder="staff id" id="adminStaffID" />
+            <input type="text" placeholder="staff id" id="adminStaffID" name="staffid"/>
             <i class="fas fa-check-circle"></i>
             <i class="fas fa-exclamation-circle"></i>
             <small>Error message</small>
           </div>
 
-          <button onclick="adminSignUpValidation()">Sign Up</button>
+          <button type="submit" form="admin-sign-up-form" name="btn" value="submit">Sign Up</button>
+          <!-- <button onclick="adminSignUpValidation()">Sign Up</button> -->
         </form>
       </div>
     </div>
 
     <!-- message below sign in button -->
     <p class="mt-5 text-center">
-      Already have an account? <a href="index.html">Log In</a>
+      Already have an account? <a href="index.php">Log In</a>
     </p>
 
     <footer>
