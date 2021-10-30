@@ -111,17 +111,17 @@ function checkLoginDetails() {
   }
 }
 
-// function setErrorFor(input, message) {
-//   const formControl = input.parentElement;
-//   const small = formControl.querySelector("small");
-//   formControl.className = "form-control error";
-//   small.innerText = message;
-// }
+function setErrorFor(input, message) {
+  const formControl = input.parentElement;
+  const small = formControl.querySelector("small");
+  formControl.className = "form-control error";
+  small.innerText = message;
+}
 
-// function setSuccessFor(input) {
-//   const formControl = input.parentElement;
-//   formControl.className = "form-control success";
-// }
+function setSuccessFor(input) {
+  const formControl = input.parentElement;
+  formControl.className = "form-control success";
+}
 
 function patientSignUpValidation() {
   var patientSignUpForm = document.getElementById("patient-sign-up-form");
@@ -287,96 +287,101 @@ function closeAdminSignUpForm() {
   document.body.classList.remove("showPopUp-admin-sign-up");
 }
 
-function newBatchValidation() {
-  var form = document.getElementById("form");
-  var batchNo = document.getElementById("batchNo");
-  var expiryDate = document.getElementById("expiryDate");
-  var quantity = document.getElementById("quantity");
-
-  form.addEventListener("add", (e) => {
-    e.preventDefault();
-    checkBatchInfo();
-    alert("Recorded successfully!");
-  });
-}
-
-function checkBatchInfo() {
-  batchNoValue = batchNo.value.trim();
-  expiryDateValue = expiryDate.value;
-  quantityValue = quantity.value.trim();
-  var correctBatch = true;
-
-  var todayDate = new Date();
-
-  if (new Date(expiryDateValue).getTime() <= todayDate.getTime()) {
-    setErrorFor(expiryDate, "Invalid expiry date");
-    correctBatch = false;
-  } else {
-    setSuccessFor(expiryDate);
-  }
-
-  if (quantityValue < 10) {
-    setErrorFor(quantity, "Invalid quantity");
-    correctBatch = false;
-  } else {
-    setSuccessFor(quantity);
-  }
-
-  if (batchNoValue === "") {
-    setErrorFor(batchNo, "Batch No. cannot be blank");
-    correctBatch = false;
-  } else {
-    setSuccessFor(batchNo);
-  }
-
-  if (expiryDateValue === "") {
-    setErrorFor(expiryDate, "Expiry date cannot be blank");
-    correctBatch = false;
-  }
-
-  if (quantityValue === "") {
-    setErrorFor(quantity, "Quantity cannot be blank");
-    correctBatch = false;
-  }
-
-  return correctBatch;
-}
-
-function clearBatchInputs() {
-  document.getElementById("batchNo").value = "";
-  document.getElementById("expiryDate").value = "";
-  document.getElementById("quantity").value = "";
-}
-
 function requestVaccinationAppointment() {
   alert("Requested successfully!");
   location.href = "PatientMenu.html";
 }
 
-// function saveVaccineForNewBatch(elem) {
-//   var id = $(elem).find(".vaccineID").text();
+function saveVaccineForNewBatch(elem) {
+  var id = $(elem).find(".vaccineID").text();
 
-//   alert(id);
-// }
-
-
-
-// $(".menu-btn").click(function (event) {
-//   event.stopPropagation();
-//   $(".menu-window").toggle(function () {
-//     // get the last value saved and inverts the value
-//     var isOpen = sessionStorage.getItem("opened");
-//     if (isOpen && isOpen === "no") {
-//       sessionStorage.setItem("opened", "yes");
-//     } else {
-//       sessionStorage.setItem("opened", "no");
-//     }
-//   });
-// });
+  $(function () {
+    $.ajax({
+      url: "RecordNewVaccineBatch.php",
+      type: "POST",
+      data: "vaccineID=" + id,
+      success: function (data) {
+        $(".display_div").html(data);
+      },
+    });
+  });
+}
 
 function openPopUp() {
   document.body.classList.add("showPopUp");
-  
 }
 
+function validateBatch() {
+  var form_element = document.getElementsByClassName("form_data");
 
+  var form_data = new FormData();
+
+  for (var i = 0; i < form_element.length; i++) {
+    form_data.append(form_element[i].name, form_element[i].value);
+  }
+
+  document.getElementById("submit").disabled = true;
+
+  var ajax_request = new XMLHttpRequest();
+
+  ajax_request.open("POST", "form-validation/batch_validation.php");
+
+  ajax_request.send(form_data);
+
+  ajax_request.onreadystatechange = function () {
+    if (ajax_request.readyState == 4 && ajax_request.status == 200) {
+      document.getElementById("submit").disabled = false;
+      var response = JSON.parse(ajax_request.responseText);
+
+      $batchNoInput = document.getElementById("batchNo");
+      $expiryDateInput = document.getElementById("expiryDate");
+      $quantityInput = document.getElementById("quantity");
+
+      if (response.success != "") {
+        document.getElementById("form").reset();
+        closePopUp();
+        alert("Recorded successfully!");
+        setSuccessFor($batchNoInput);
+        setSuccessFor($expiryDateInput);
+        setSuccessFor($quantityInput);
+      } else {
+        if (response.wrong_batchNo == "blankBatchNo") {
+          setErrorFor($batchNoInput, "Batch no. cannot be blank");
+        } else if (response.wrong_batchNo == "usedBatchNo") {
+          setErrorFor($batchNoInput, "Batch no. is used");
+        } else {
+          setSuccessFor($batchNoInput);
+        }
+
+        if (response.wrong_expiryDate == "blankExpiryDate") {
+          setErrorFor($expiryDateInput, "Expiry date cannot be blank");
+        } else if (response.wrong_expiryDate == "invalidExpiryDate") {
+          setErrorFor($expiryDateInput, "Invalid expiry date");
+        } else {
+          setSuccessFor($expiryDateInput);
+        }
+
+        if (response.wrong_quantity == "blankQuantity") {
+          setErrorFor($quantityInput, "Quanitity available cannot be blank");
+        } else if (response.wrong_quantity == "invalidQuantity") {
+          setErrorFor($quantityInput, "Invalid quantity available");
+        } else {
+          setSuccessFor($quantityInput);
+        }
+      }
+    }
+  };
+}
+
+function showCustomer(str) {
+  if (str == "") {
+    document.getElementById("txtHint").innerHTML = "";
+    return;
+  }
+  const xhttp = new XMLHttpRequest();
+  xhttp.onload = function () {
+    document.getElementById("txtHint").innerHTML = this.responseText;
+  };
+  xhttp.open("GET", "getcustomer.php?q=" + str);
+  xhttp.send();
+}

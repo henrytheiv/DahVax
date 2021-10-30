@@ -143,23 +143,16 @@ nav {
 
 .validation-form i {
   visibility: hidden;
-  position: absolute;
-  top: 50px;
-  right: 25px;
+  display: block;
+  
 }
 
-.validation-form .form-control.success input {
-  border-color: #2ecc71;
-}
+
 
 .validation-form .form-control.error input {
   border-color: #e74c3c;
 }
 
-.validation-form .form-control.success i.fa-check-circle {
-  color: #2ecc71;
-  visibility: visible;
-}
 
 .validation-form .form-control.error i.fa-exclamation-circle {
   color: #e74c3c;
@@ -174,9 +167,15 @@ nav {
 }
 
 
-/* .validation-form .form-control.error small {
+.validation-form .form-control.error small {
   visibility: visible;
-} */
+}
+
+.validation-form .form-control.success small {
+  visibility: hidden;
+}
+
+
 
 .validation-form button {
   background-color: #112031;
