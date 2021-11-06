@@ -1,14 +1,15 @@
 <?php
 
-if (isset($_POST['vaccinationID'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     require_once "../app/database.php";
 
-
     $output = "";
 
     $vaccinationID = $_POST['vaccinationID'];
+
+    $output = $vaccinationID;
 
     $findVaccinationSql = $pdo->prepare("SELECT * FROM vaccinations WHERE vaccinationID = :vaccinationID");
     $findVaccinationSql->bindValue(":vaccinationID", $vaccinationID);
@@ -30,14 +31,13 @@ if (isset($_POST['vaccinationID'])) {
     $findVaccineSql->execute();
     $vaccine = $findVaccineSql->fetch();
 
-    ?>
-
-    $output = <div class='row'>
+    $output = "
+    <div class='row'>
     <div class='col'>
       <div class='information'>
         <h3 class='header'>Patient details:</h3>
         <p>Full Name.: " . $patient['fullName'] . "</p>
-        <p>IC/ Passport:" . $patient['ICPassport'] . "</p>
+        <p>IC/ Passport: " . $patient['ICPassport'] . "</p>
       </div>
     </div>
     <div class='col'>
@@ -54,7 +54,7 @@ if (isset($_POST['vaccinationID'])) {
     <h3 class='header mt-0'>Status:</h3>
 
     <p>" . $vaccination['status'] . "
-         <i class='fas fa-edit fa-lg' onclick='inputAdministeredRemarks()'></i>
+         <i class='fas fa-edit fa-lg'></i>
     </p>
     <span class='type'>
       <form id='form' action=''>
@@ -66,8 +66,6 @@ if (isset($_POST['vaccinationID'])) {
       <button type='submit'>Update</button>
     </span>
   </div>";
-
-  <?php
 
     echo $output;
 }

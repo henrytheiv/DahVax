@@ -124,10 +124,11 @@ include_once '../views/partials/header.php';
       <div class="container"></div>
       <div class="modal-body">
         <div class="container text-center">
+
           <div id="vaccination-detail">
 
-
           </div>
+
         </div>
       </div>
     </div>
@@ -178,6 +179,8 @@ include_once '../views/partials/header.php';
 
     });
 
+    
+
 
 
 
@@ -185,7 +188,7 @@ include_once '../views/partials/header.php';
 
 
   function getVaccination() {
-    var vaccinationID = $(this).attr("id");
+    var vaccinationID = $(".fa-edit").attr('id');
 
     $.ajax({
       url: "selected_vaccination.php",
@@ -194,7 +197,6 @@ include_once '../views/partials/header.php';
         vaccinationID: vaccinationID
       },
       success: function(data) {
-        console.log("yes");
         $("#vaccination-detail").html(data);
       }
 
