@@ -366,3 +366,4 @@ function saveVaccineForNewBatch(elem) {
 
   alert(id);
 }
+

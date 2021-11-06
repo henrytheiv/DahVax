@@ -2,6 +2,58 @@ function dropDownIconChange() {
   $(".dropdown-toggle i").toggleClass("fa-bars fa-caret-down");
 }
 
+function signIn() {
+  var form_element = document.getElementsByClassName("form_data");
+
+  var form_data = new FormData();
+
+  for (var i = 0; i < form_element.length; i++) {
+    form_data.append(form_element[i].name, form_element[i].value);
+  }
+
+  document.getElementById("submit").disabled = true;
+
+  var ajax_request = new XMLHttpRequest();
+
+  ajax_request.open("POST", "form-validation/signIn_validation.php");
+
+  ajax_request.send(form_data);
+
+  ajax_request.onreadystatechange = function () {
+    if (ajax_request.readyState == 4 && ajax_request.status == 200) {
+      document.getElementById("submit").disabled = false;
+      var response = JSON.parse(ajax_request.responseText);
+
+      $usernameInput = document.getElementById("username");
+      $passwordInput = document.getElementById("password");
+
+      if (response.success != "") {
+        if (response.success == "successPatient") {
+          alert("Signed in as patient");
+        } else {
+          location.href = "AdminMenu.php";
+        }
+      } else {
+        if (response.wrong_username == "blankUsername") {
+          setErrorFor($usernameInput, "Username cannot be blank");
+        } else if (response.wrong_username == "invalidUsername") {
+          setErrorFor($usernameInput, "Invalid username");
+        } else {
+          setSuccessFor($usernameInput);
+        }
+
+        if (response.wrong_password == "blankPassword") {
+          setErrorFor($passwordInput, "Password cannot be blank");
+        } else if (response.wrong_password == "invalidPassword") {
+          setErrorFor($passwordInput, "Invalid password");
+        } else {
+          setSuccessFor($passwordInput);
+        }
+      }
+    }
+  };
+}
+
 //the pop up for patient sign up (OPEN)
 function openPatientSignUpForm() {
   document.body.classList.add("showPopUp-patient-sign-up");
@@ -70,45 +122,6 @@ function openCentreName() {
 
 function closeCentreName() {
   document.body.classList.close("showPopUp-centre-name");
-}
-
-// Login validation
-
-function loginValidation() {
-  var loginForm = document.getElementById("form");
-  var username = document.getElementById("username");
-  var password = document.getElementById("password");
-
-  loginForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    checkLoginDetails();
-  });
-}
-
-function checkLoginDetails() {
-  usernameValue = username.value.trim();
-  passwordValue = password.value.trim();
-
-  if (usernameValue === "abc" && passwordValue === "123") {
-    setSuccessFor(username);
-    setSuccessFor(password);
-    location.href = "AdminMenu.html";
-  } else if (usernameValue === "def" && passwordValue === "456") {
-    setSuccessFor(username);
-    setSuccessFor(password);
-    location.href = "PatientMenu.html";
-  } else {
-    setErrorFor(username, "Invalid username");
-    setErrorFor(password, "Invalid password");
-  }
-
-  if (usernameValue === "") {
-    setErrorFor(username, "Username cannot be blank");
-  }
-
-  if (passwordValue === "") {
-    setErrorFor(password, "Password cannot be blank");
-  }
 }
 
 function setErrorFor(input, message) {
@@ -292,23 +305,14 @@ function requestVaccinationAppointment() {
   location.href = "PatientMenu.html";
 }
 
-function saveVaccineForNewBatch(elem) {
-  var id = $(elem).find(".vaccineID").text();
+function clearBatchCSS() {
+  $batchNoInput = document.getElementById("batchNo");
+  $expiryDateInput = document.getElementById("expiryDate");
+  $quantityInput = document.getElementById("quantity");
 
-  $(function () {
-    $.ajax({
-      url: "RecordNewVaccineBatch.php",
-      type: "POST",
-      data: "vaccineID=" + id,
-      success: function (data) {
-        $(".display_div").html(data);
-      },
-    });
-  });
-}
-
-function openPopUp() {
-  document.body.classList.add("showPopUp");
+  setSuccessFor($batchNoInput);
+  setSuccessFor($expiryDateInput);
+  setSuccessFor($quantityInput);
 }
 
 function validateBatch() {
@@ -339,8 +343,8 @@ function validateBatch() {
 
       if (response.success != "") {
         document.getElementById("form").reset();
-        closePopUp();
         alert("Recorded successfully!");
+        location.href = "RecordNewVaccineBatch.php";
         setSuccessFor($batchNoInput);
         setSuccessFor($expiryDateInput);
         setSuccessFor($quantityInput);
@@ -373,15 +377,80 @@ function validateBatch() {
   };
 }
 
-function showCustomer(str) {
-  if (str == "") {
-    document.getElementById("txtHint").innerHTML = "";
-    return;
+function validatePatient() {
+  var form_element = document.getElementsByClassName("form_data");
+
+  var form_data = new FormData();
+
+  for (var i = 0; i < form_element.length; i++) {
+    form_data.append(form_element[i].name, form_element[i].value);
   }
-  const xhttp = new XMLHttpRequest();
-  xhttp.onload = function () {
-    document.getElementById("txtHint").innerHTML = this.responseText;
+
+  document.getElementById("submit").disabled = true;
+
+  var ajax_request = new XMLHttpRequest();
+
+  ajax_request.open("POST", "form-validation/patient_validation.php");
+
+  ajax_request.send(form_data);
+
+  ajax_request.onreadystatechange = function () {
+    if (ajax_request.readyState == 4 && ajax_request.status == 200) {
+      document.getElementById("submit").disabled = false;
+      var response = JSON.parse(ajax_request.responseText);
+
+      $patientUsernameInput = document.getElementById("patientUsername");
+      $patientPasswordInput = document.getElementById("patientPassword");
+      $patientEmailInput = document.getElementById("patientEmail");
+      $patientFullnameInput = document.getElementById("patientFullname");
+      $patientIcpassportInput = document.getElementById("patientIcpassport");
+
+      if (response.success != "") {
+        document.getElementById("patient-sign-up-form").reset();
+        alert("Patient signed up successfully!");
+        setSuccessFor($patientUsernameInput);
+        setSuccessFor($patientPasswordInput);
+        setSuccessFor($patientEmailInput);
+        setSuccessFor($patientFullnameInput);
+        setSuccessFor($patientIcpassportInput);
+      } else {
+        if (response.wrong_patient_username == "blankPatientUsername") {
+          setErrorFor($patientUsernameInput, "Patient username cannot be blank");
+        } else if (response.wrong_patient_username == "usedPatientUsername") {
+          setErrorFor($patientUsernameInput, "Patient username is used");
+        } else {
+          setSuccessFor($patientUsernameInput);
+        }
+
+        if (response.wrong_patient_password == "blankPatientPassword") {
+          setErrorFor($patientPasswordInput, "Password cannot be blank");
+        } else if (response.wrong_patient_password == "invalidPatientPassword") {
+          setErrorFor($patientPasswordInput, "Password must be at Least 6 characters in length and must contain at least one number, one upper case letter!");
+        } else {
+          setSuccessFor($patientPasswordInput);
+        }
+
+        if (response.wrong_patient_email == "blankPatientEmail") {
+          setErrorFor($patientEmailInput, "Email cannot be blank");
+        } else {
+          setSuccessFor($patientEmailInput);
+        }
+
+        if (response.wrong_patient_fullname == "blankPatientFullname") {
+          setErrorFor($patientFullnameInput, "Full name cannot be blank");
+        } else {
+          setSuccessFor($patientFullnameInput);
+        }
+
+        if (response.wrong_patient_Icpassport == "blankPatientIcpassport") {
+          setErrorFor($patientIcpassportInput, "IC / Passport No. cannot be blank");
+        } else {
+          setSuccessFor($patientIcpassportInput);
+        }
+      }
+    }
   };
-  xhttp.open("GET", "getcustomer.php?q=" + str);
-  xhttp.send();
 }
+
+
+

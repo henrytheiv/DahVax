@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -14,7 +15,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $quantityAvailable = $_POST['quantityAvailable'];
   $quantityPending = 0;
   $quantityAdministered = 0;
-  $vaccineID = 'V110';
+  $vaccineID = $_SESSION['vaccineID'];
+  $centreName = $_SESSION['centreName'];
+
+
 
   $success = '';
 
@@ -72,11 +76,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       ':quantityAvailable' => $quantityAvailable,
       ':quantityPending' => $quantityPending,
       ':quantityAdministered' => $quantityAdministered,
+      ':centreName' => $centreName,
       ':vaccineID' => $vaccineID
     );
 
-    $statement = $pdo->prepare("INSERT INTO batches (batchNo, expiryDate, quantityAvailable, quantityPending, quantityAdministered, vaccineID)
-    VALUES (:batchNo, :expiryDate, :quantityAvailable, :quantityPending, :quantityAdministered, :vaccineID)");
+    $statement = $pdo->prepare("INSERT INTO batches (batchNo, expiryDate, quantityAvailable, quantityPending, quantityAdministered, centreName, vaccineID)
+    VALUES (:batchNo, :expiryDate, :quantityAvailable, :quantityPending, :quantityAdministered, :centreName, :vaccineID)");
 
     $statement->execute($data);
 

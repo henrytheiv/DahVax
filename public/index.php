@@ -2,10 +2,9 @@
 
 include_once '../views/partials/header.php';
 
-$username = '';
-$password = '';
-
-require_once 'form-validation/login-validation.php';
+session_start();
+session_destroy();
+// require_once 'form-validation/signIn_validation.php';
 
 ?>
 
@@ -17,35 +16,27 @@ require_once 'form-validation/login-validation.php';
 <h2 class="page-title">Sign In</h2>
 
 <!-- Log in form-->
+
 <div class="container form-container">
-    <form id="form" class="validation-form" method="POST">
+    <form id="form" class="validation-form">
         <div class="form-control">
-            <label for="username">Username</label>
-            <input type="text" placeholder="Username" id="username" name="username" value="<?php echo $username ?>"/>
-            <?php if (isset($blankUsernameMsg)){ ?>
-                        <small><?php echo $blankUsernameMsg; ?></small>
-                        <?php } ?>
-
-            <!-- <i class="fas fa-check-circle"></i>
-            <i class="fas fa-exclamation-circle"></i>
-            <small>Error message</small> -->
+            <label for="username"><span class="text-danger">*</span>Username:</label>
+            <input type="text" placeholder="Username" name="username" id="username" class="form_data" />
+            <small></small>
+        </div>
+        <div class="form-control">
+            <label for="password"><span class="text-danger">*</span>Password:</label>
+            <input type="password" name="password" id="password" class="form_data" />
+            <small></small>
         </div>
 
-        <div class="form-control">
-            <label for="username">Password</label>
-            <input type="password" placeholder="Password" id="password" name="password" value="<?php echo $password ?>"/>
-            <?php if (isset($blankPasswordMsg)){ ?>
-                        <small><?php echo $blankPasswordMsg; ?></small>
-                        <?php } ?>
-            <!-- <i class="fas fa-check-circle"></i>
-            <i class="fas fa-exclamation-circle"></i>
-            <small>Error message</small> -->
-        </div>
-
-        <button type="submit">Sign In</button>
+        <button type="button" name="submit" id="submit" onclick="signIn(); return false;">Sign In</button>
     </form>
+
 </div>
+
 
 <p class="text-center mt-2">Doesn't have an account? <a href="SignUp.html">Sign up here</a></p>
 
 <?php include_once '../views/partials/footer.php'; ?>
+

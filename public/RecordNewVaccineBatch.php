@@ -1,12 +1,19 @@
 <?php
 
-
 require_once '../app/app.php';
+
+session_start();
+
+if ($_SESSION['user'] == null){
+
+    redirect("index.php");
+}
+
+
 
 $getVaccinesStatement = $pdo->prepare('SELECT * FROM vaccines');
 $getVaccinesStatement->execute();
 $vaccines = $getVaccinesStatement->fetchAll(PDO::FETCH_ASSOC);
-
 
 
 
@@ -28,8 +35,8 @@ include_once '../views/partials/header.php';
                         <i class="fas fa-bars"></i>
                     </a>
                     <div class="dropdown-menu custom-nav-dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="AdminMenu.html">Dashboard <i class="fas fa-user"></i></a>
-                        <a class="dropdown-item" href="ViewVaccineBatchInfo.html">View Vaccine Batch Info</a>
+                        <a class="dropdown-item" href="AdminMenu.php">Dashboard <i class="fas fa-user"></i></a>
+                        <a class="dropdown-item" href="ViewVaccineBatchInfo.php">View Vaccine Batch Info</a>
                     </div>
                 </div>
             </li>
@@ -62,7 +69,7 @@ include_once '../views/partials/header.php';
                         <td class="vaccineID"><?php echo $vaccine["vaccineID"]; ?></td>
                         <td><?php echo $vaccine["vaccineName"]; ?></td>
                         <td>
-                            <i class="fas fa-plus-square fa-2x" onclick="openPopUp()"></i>
+                            <i class="fas fa-plus-square fa-2x view_data" id="<?php echo $vaccine['vaccineID']; ?>" data-toggle="modal" data-target="#batchRecordForm" onclick="clearBatchCSS()"></i>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -71,38 +78,70 @@ include_once '../views/partials/header.php';
     </div>
 </div>
 
-<!-- Pop-up window -->
-<div class="popup-overlay"></div>
-<div class="popup record-new-batch">
-    <div class="popup-close" onclick="closePopUp()">&times;</div>
-    <h3 class="header">Record New Batch:</h3>
-    <div class="information">
-        <p>Vaccine Name:</p>
-        <p>Manufacturer</p>
-    </div>
-    <div class="container form-container">
-        <form id="form" class="validation-form">
-            <div class="form-control">
-                <label for="batchNo"><span class="text-danger">*</span>Batch no.:</label>
-                <input type="text" placeholder="eg. BXXX" name="batchNo" id="batchNo" class="form_data" />
-                <small></small>
+<div class="modal fade" id="batchRecordForm" tabindex="-1" role="dialog" aria-labelledby="batchRecordFormTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="batchRecordFormTitle">Record New Batch</h3>
+                <i class="fas fa-window-close fa-2x close" data-dismiss="modal" aria-label="Close"></i>
             </div>
-            <div class="form-control">
-                <label for="expiryDate"><span class="text-danger">*</span>Expiry date:</label>
-                <input type="date" name="expiryDate" id="expiryDate" class="form_data" />
-                <small></small>
+            <div class="modal-body">
+                <div class="information" id="vaccine-detail">
+
+                </div>
+                <div class="container form-container">
+                    <form id="form" class="validation-form">
+                        <div class="form-control">
+                            <label for="batchNo"><span class="text-danger">*</span>Batch no.:</label>
+                            <input type="text" placeholder="eg. BXXX" name="batchNo" id="batchNo" class="form_data" />
+                            <small></small>
+                        </div>
+                        <div class="form-control">
+                            <label for="expiryDate"><span class="text-danger">*</span>Expiry date:</label>
+                            <input type="date" name="expiryDate" id="expiryDate" class="form_data" />
+                            <small></small>
+                        </div>
+                        <div class="form-control">
+                            <label for="quantiy"><span class="text-danger">*</span>Quantity of doses available:</label>
+                            <input type="number" placeholder=">10" name="quantityAvailable" id="quantity" class="form_data" />
+                            <small></small>
+                        </div>
+                        <button type="button" name="submit" id="submit" onclick="validateBatch(); return false;">Record</button>
+                    </form>
+
+                </div>
             </div>
-            <div class="form-control">
-                <label for="quantiy"><span class="text-danger">*</span>Quantity of doses available:</label>
-                <input type="number" placeholder=">10" name="quantityAvailable" id="quantity" class="form_data" />
-                <small></small>
-            </div>
-            <button type="button" name="submit" id="submit" onclick="validateBatch(); return false;">Record</button>
-        </form>
+        </div>
     </div>
 </div>
 
 
-
-
 <?php include_once '../views/partials/footer.php'; ?>
+
+
+<script>
+    $(document).ready(function() {
+
+        $('.view_data').click(function() {
+
+            var vaccineID = $(this).attr("id");
+
+            $.ajax({
+
+                url: "selected_vaccine.php",
+                method: "POST",
+                data: {
+                    vaccineID: vaccineID
+                },
+                success: function(data) {
+
+                    $('#vaccine-detail').html(data);
+
+
+
+                }
+            });
+        });
+
+    });
+</script>
