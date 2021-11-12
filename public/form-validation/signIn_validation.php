@@ -2,9 +2,11 @@
 
 session_start();
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+require_once '../../app/app.php';
 
-    require_once '../../app/database.php';
+
+if (is_post()) {
+
 
     $username = $_POST['username'];
     $password = $_POST['password'];

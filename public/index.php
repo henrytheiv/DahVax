@@ -1,5 +1,7 @@
 <?php
 
+$title = "DahVax";
+
 include_once '../views/partials/header.php';
 
 session_start();
@@ -36,7 +38,7 @@ session_destroy();
 </div>
 
 
-<p class="text-center mt-2">Doesn't have an account? <a href="SignUp.html">Sign up here</a></p>
+<p class="text-center mt-2">Doesn't have an account? <a href="SignUp.php">Sign up here</a></p>
 
 <?php include_once '../views/partials/footer.php'; ?>
 

@@ -1,14 +1,16 @@
 <?php
 
+require_once "../app/app.php";
 
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+
+if (is_post()) {
 
   session_start();
 
   $output = "";
 
-  require_once "../app/database.php";
 
   $batchNo = $_POST['batchNo'];
 
@@ -20,9 +22,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   if (empty($vaccinations)) {
 
     $output = "<h3 class='p-5 text-center'>No vaccinations requested yet.</h3>";
-  }
+  } else {
 
-  foreach ($vaccinations as $vaccination) {
+
+    $vaccinationRow= "";
+
+
+    foreach ($vaccinations as $vaccination) {
+
+
+      $vaccinationRow = $vaccinationRow.'<tr>
+      <td>' . $vaccination["vaccinationID"] . '</td>
+      <td>' . $vaccination["appointmentDate"] . '</td>
+      <td>' . $vaccination["status"] . '</td>
+      <td>' . $vaccination["remarks"] . '</td>
+      <td>
+        <i class="fas fa-edit fa-2x '.$vaccination['vaccinationID'] .'" id="' . $vaccination['vaccinationID'] . '" data-bs-target="#viewVaccinationInfo" data-bs-toggle="modal" data-bs-dismiss="modal" onclick="getVaccination(this.id)"></i>
+      </td>
+  </tr>';
+    }
+
+
 
 
     $output = '<div class="scrollable">
@@ -37,20 +57,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>' . $vaccination["vaccinationID"] . '</td>
-                <td>' . $vaccination["appointmentDate"] . '</td>
-                <td>' . $vaccination["status"] . '</td>
-                <td>' . $vaccination["remarks"] . '</td>
-                <td>
-                <i class="fas fa-edit fa-2x" id="'. $vaccination['vaccinationID'] .'" data-toggle="modal" href="#myModal2" onclick="getVaccination()"></i>
-                </td>
-            </tr>
+            '.$vaccinationRow.'
         </tbody>
       </table>
 
       </div>';
   }
+
 
   echo $output;
 }

@@ -1,14 +1,13 @@
 <?php
 
+require_once "../app/app.php";
 
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if (is_post()) {
 
     session_start();
 
     $output = "";
-
-    require_once "../app/database.php";
 
     $batchNo = $_POST['batchNo'];
     $_SESSION['batchNo'] = $batchNo;

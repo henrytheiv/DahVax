@@ -4,17 +4,20 @@ session_start();
 
 require_once '../app/app.php';
 
+require_once "checkAdminSignIn.php";
+
 
 if ($_SESSION['user'] == null) {
 
   redirect("index.php");
 }
 
-$getBatchesSql = $pdo->prepare("SELECT * FROM batches WHERE centreName = :centreName");
+$getBatchesSql = $pdo->prepare("SELECT * FROM batches WHERE centreName = :centreName ORDER BY quantityPending DESC");
 $getBatchesSql->bindValue(":centreName", $_SESSION['centreName']);
 $getBatchesSql->execute();
 $batches = $getBatchesSql->fetchAll(PDO::FETCH_ASSOC);
 
+$title = "DahVax - View Vaccine Batch Info";
 
 
 include_once '../views/partials/header.php';
@@ -49,54 +52,68 @@ include_once '../views/partials/header.php';
 
 <h2 class="page-title">View Vaccine Batch Info</h2>
 <div class="container mt-3">
-  <h3 class="instruction">Select a vaccine batch to view:</h3>
 
-  <div class="scrollable">
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th scope="col">Batch No.</th>
-          <th scope="col">Vaccine Name</th>
-          <th scope="col">No. of pending appointments</th>
-
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
+  <?php if ($getBatchesSql->rowCount() > 0) { ?>
 
 
-        <?php foreach ($batches as $batch) :
+    <h3 class="instruction">Select a vaccine batch to view:</h3>
 
-          $findVaccineSQL = $pdo->prepare("SELECT * FROM vaccines WHERE vaccineID = :vaccineID");
-          $findVaccineSQL->bindValue(':vaccineID', $batch['vaccineID']);
-          $findVaccineSQL->execute();
-          $vaccine = $findVaccineSQL->fetch();
-
-        ?>
+    <div class="scrollable">
+      <table class="table table-hover">
+        <thead>
           <tr>
-            <td><?php echo $batch['batchNo']; ?></td>
-            <td><?php echo $vaccine['vaccineName']; ?></td>
-            <td><?php echo $batch['quantityPending']; ?></td>
-            <td>
-              <i class="fas fa-eye fa-2x view_batch_data view_vaccinations" id="<?php echo $batch['batchNo']; ?>" data-toggle="modal" href="#myModal"></i>
-            </td>
+            <th scope="col">Batch No.</th>
+            <th scope="col">Vaccine Name</th>
+            <th scope="col">No. of pending appointments</th>
+
+            <th></th>
           </tr>
-        <?php endforeach; ?>
-      </tbody>
-    </table>
-  </div>
+        </thead>
+        <tbody>
+
+
+          <?php foreach ($batches as $batch) :
+
+            $findVaccineSQL = $pdo->prepare("SELECT * FROM vaccines WHERE vaccineID = :vaccineID");
+            $findVaccineSQL->bindValue(':vaccineID', $batch['vaccineID']);
+            $findVaccineSQL->execute();
+            $vaccine = $findVaccineSQL->fetch();
+
+          ?>
+            <tr>
+              <td><?php echo $batch['batchNo']; ?></td>
+              <td><?php echo $vaccine['vaccineName']; ?></td>
+              <td><?php echo $batch['quantityPending']; ?></td>
+              <td>
+                <i class="fas fa-eye fa-2x view_batch_data view_vaccinations" id="<?php echo $batch['batchNo']; ?>" data-bs-toggle="modal" href="#viewBatchInfo"></i>
+              </td>
+            </tr>
+          <?php endforeach; ?>
+        </tbody>
+      </table>
+    </div>
+
+  <?php } else { ?>
+
+
+    <h3 class="text-center">No vaccine batches recorded yet.</h3>
+
+
+  <?php } ?>
+
+
 </div>
 
 
 
-</div>
 
-<div class="modal fade" id="myModal">
-  <div class="modal-dialog modal-lg">
+
+<div class="modal fade" id="viewBatchInfo" aria-hidden="true" aria-labelledby="viewBatchTitle" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <h3 class="modal-title" id="viewBatchTitle">Batch Info</h3>
-        <i class="fas fa-window-close fa-2x close" data-dismiss="modal" aria-label="Close"></i>
+        <i class="fas fa-window-close fa-2x close" data-bs-dismiss="modal" aria-label="Close"></i>
       </div>
       <div class="modal-body">
 
@@ -108,20 +125,19 @@ include_once '../views/partials/header.php';
 
         </div>
 
-
       </div>
+
     </div>
   </div>
 </div>
 
-<div class="modal fade" id="myModal2">
-  <div class="modal-dialog">
+<div class="modal fade" id="viewVaccinationInfo" aria-hidden="true" aria-labelledby="manageVaccinationTitle" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
         <h3 class="modal-title" id="manageVaccinationTitle">Vaccination Info</h3>
-        <i class="fas fa-window-close fa-2x close" data-dismiss="modal" aria-label="Close"></i>
+        <i class="fas fa-window-close fa-2x close" data-bs-target="#viewBatchInfo" data-bs-toggle="modal" data-bs-dismiss="modal"></i>
       </div>
-      <div class="container"></div>
       <div class="modal-body">
         <div class="container text-center">
 
@@ -131,9 +147,12 @@ include_once '../views/partials/header.php';
 
         </div>
       </div>
+
     </div>
   </div>
 </div>
+
+
 
 
 <script>
@@ -179,7 +198,7 @@ include_once '../views/partials/header.php';
 
     });
 
-    
+
 
 
 
@@ -187,8 +206,10 @@ include_once '../views/partials/header.php';
   });
 
 
-  function getVaccination() {
-    var vaccinationID = $(".fa-edit").attr('id');
+
+
+  function getVaccination(id) {
+    var vaccinationID = id;
 
     $.ajax({
       url: "selected_vaccination.php",

@@ -1,15 +1,14 @@
 <?php
 
+require_once "../app/app.php";
+
+
 session_start();
 
-
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
+if (is_post()) {
 
     $output = "";
 
-    require_once "../app/database.php";
 
     $vaccineID = $_POST['vaccineID'];
     $_SESSION['vaccineID'] = $vaccineID;

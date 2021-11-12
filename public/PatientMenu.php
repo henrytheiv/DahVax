@@ -1,17 +1,16 @@
 <?php
 
-require_once "../app/app.php";
-
 session_start();
 
-require_once "checkAdminSignIn.php";
+require_once '../app/app.php';
+require_once 'checkPatientSignIn.php';
 
-$sql = $pdo->prepare("SELECT * FROM admins WHERE username = :username");
+$sql = $pdo->prepare("SELECT * FROM patients WHERE username = :username");
 $sql->bindValue(':username', $_SESSION['user']);
 $sql->execute();
-$admin = $sql->fetch();
+$patient = $sql->fetch();
 
-$_SESSION['centreName']=$admin['centreName'];
+$_SESSION['ICPassport']=$patient['ICPassport'];
 
 $title = "DahVax - Dashboard";
 
@@ -33,20 +32,21 @@ include_once '../views/partials/header.php';
 
 <div class="container mt-5">
   <div class="row justify-content-center">
+    <!-- display patient fullname and icpassport -->
     <div class="col-lg-4 text-center">
     <i class="fas fa-user fa-10x user-icon mb-2"></i>
-      <h2><?php echo $admin['fullName']; ?></h2>
-      <p><?php echo $admin['centreName']; ?></p>
+      <h2><?php echo $patient['fullName']; ?></h2>
+      <p><?php echo $patient['ICPassport']; ?></p>
     </div>
     <div class="col-lg-4">
       <div class="row">
-        <a class="btn btn-primary btn-lg mb-3 function-button" href="RecordNewVaccineBatch.php" role="button">
-          Record New Vaccine Batch
+        <a class="btn btn-primary btn-lg mb-3 function-button" href="#" role="button">
+          Request Vaccination Appointment 
         </a>
       </div>
       <div class="row">
-        <a class="btn btn-primary btn-lg mb-3 function-button" href="ViewVaccineBatchInfo.php" role="button">
-          View Vaccine Batch Info
+        <a class="btn btn-primary btn-lg mb-3 function-button" href="ViewVaccinationAppointmentStatus.php" role="button">
+          View Vaccination Appointment Status
         </a>
       </div>
     </div>

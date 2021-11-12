@@ -1,7 +1,10 @@
 <?php
 
+require_once '../../app/app.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+
+if (is_post()) {
 
     //call databse.php
     require_once '../../app/database.php';

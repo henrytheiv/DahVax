@@ -4,11 +4,7 @@ require_once '../app/app.php';
 
 session_start();
 
-if ($_SESSION['user'] == null){
-
-    redirect("index.php");
-}
-
+require_once "checkAdminSignIn.php";
 
 
 $getVaccinesStatement = $pdo->prepare('SELECT * FROM vaccines');
@@ -16,6 +12,7 @@ $getVaccinesStatement->execute();
 $vaccines = $getVaccinesStatement->fetchAll(PDO::FETCH_ASSOC);
 
 
+$title = "DahVax - Record New Vaccine Batch";
 
 include_once '../views/partials/header.php';
 
@@ -65,8 +62,8 @@ include_once '../views/partials/header.php';
             </thead>
             <tbody>
                 <?php foreach ($vaccines as $vaccine) : ?>
-                    <tr onclick="saveVaccineForNewBatch(this)">
-                        <td class="vaccineID"><?php echo $vaccine["vaccineID"]; ?></td>
+                    <tr>
+                        <td><?php echo $vaccine["vaccineID"]; ?></td>
                         <td><?php echo $vaccine["vaccineName"]; ?></td>
                         <td>
                             <i class="fas fa-plus-square fa-2x view_data" id="<?php echo $vaccine['vaccineID']; ?>" data-toggle="modal" data-target="#batchRecordForm" onclick="clearBatchCSS()"></i>

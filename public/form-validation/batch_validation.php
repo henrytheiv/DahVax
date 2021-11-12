@@ -2,13 +2,11 @@
 
 session_start();
 
+require_once '../../app/app.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+if (is_post()) {
 
-  require_once '../../app/database.php';
-
-  
 
   $batchNo = $_POST['batchNo'];
   $expiryDate = $_POST['expiryDate'];
