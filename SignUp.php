@@ -4,14 +4,13 @@
 include_once '../views/partials/header.php';
 
 //validatation for patient
-require_once '../public/form-validation/patient_validation.php';
+// require_once '../public/form-validation/patient_validation.php';
 
-require_once '../public/form-validation/dropdown_validation.php';
+// require_once '../public/form-validation/dropdown_validation.php';
 
 // $getCentre = $pdo->prepare('SELECT * FROM healthcarecentres');
 // $getCentre->execute();
 // $centres = $getCentre->fetchAll(PDO::FETCH_ASSOC);
-
 
 ?>
 
@@ -36,7 +35,6 @@ require_once '../public/form-validation/dropdown_validation.php';
             <h3 class="sign-up-icon-text">Healthcare Administrator</h3>
         </div>
 
-        <!-- <a class="btn btn-primary" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Open first modal</a> -->
     </div>
 </div>
 
@@ -93,6 +91,7 @@ require_once '../public/form-validation/dropdown_validation.php';
 
                         <!-- button -->
                         <button type="button" name="submit" id="submit" onclick="validatePatient(); return false;">Sign Up</button>
+  
                     </form>
                 </div>
             </div>
@@ -222,8 +221,8 @@ require_once '../public/form-validation/dropdown_validation.php';
                         <!-- patient username -->
                         <div class="form-control">
                             <label for="centreName"><span class="text-danger">*</span>New centre name:</label>
-                            <input type="text" placeholder="centre name" id="centreName" name="centreName" class="form_data" />
-                            <small></small>
+                                <input type="text" placeholder="centre name" id="centreName" name="centreName" class="form_data" />
+                                <small></small>
                         </div>
 
                         <!-- patient password -->
@@ -246,7 +245,9 @@ require_once '../public/form-validation/dropdown_validation.php';
 
 
 
-
+<!-- add new centre -->
+<p class="text-center mt-2">Add new centre? <i class="fas fa-plus-square fa-1x" data-toggle="modal" data-target="#centreForm"></i></p>
+<!--  -->
 <p class="text-center mt-2">Already have an account? <a href="index.php">Log in here</a></p>
 
 
@@ -256,16 +257,3 @@ include_once '../views/partials/footer.php';
 ?>
 
 
-<script>
-    $("centreName").change(function () {
-        var data = $(this).find(":centreName").text();
-        $.ajax({
-            url : "admin_validation.php" ,
-            type: "GET",
-            data : data,
-            success : function () {
-                alert("success done");
-            }
-        })
-    });
-</script>
