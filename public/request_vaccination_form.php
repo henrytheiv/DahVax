@@ -20,7 +20,7 @@ if(is_post()){
         <input type='date' name='appointmentDate' id='appointmentDate' class='form_data' />
         <small></small>
     </div>
-    <button type='submit' name='submit' id='submit' onclick='addAppointment(); return false;'>Record</button>
+    <button type='submit' name='submit' id='submit' onclick='addAppointment();'>Request</button>
 </form>";
 
 echo $output;

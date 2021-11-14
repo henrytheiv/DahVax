@@ -1,10 +1,10 @@
 <?php
 
-require_once '../../app/app.php';
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-if (is_post()) {
-
+    //call databse.php
+    require_once '../../app/database.php';
 
     //collect values from a form with method="post"
     $username = $_POST['adminUsername'];
@@ -107,7 +107,7 @@ if (is_post()) {
         'wrong_admin_password'  =>  $wrong_admin_password,
         'wrong_admin_email'  =>  $wrong_admin_email,
         'wrong_admin_fullname'  =>  $wrong_admin_fullname,
-        'wrong_admin_staffID'  =>  $wrong_admin_staffID
+        'wrong_admin_staffID'  =>  $wrong_admin_staffID,
       
     );
 

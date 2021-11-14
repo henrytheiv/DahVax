@@ -36,7 +36,7 @@ include_once "../views/partials/header.php";
                     </a>
                     <div class="dropdown-menu custom-nav-dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="PatientMenu.php">Dashboard <i class="fas fa-user"></i></a>
-                        <a class="dropdown-item" href="VRequestVaccinationAppointment.php">Request Vaccination Appointment</a>
+                        <a class="dropdown-item" href="RequestVaccination.php">Request Vaccination Appointment</a>
                     </div>
                 </div>
             </li>

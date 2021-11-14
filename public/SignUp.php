@@ -8,9 +8,6 @@ include_once '../views/partials/header.php';
 
 // require_once '../public/form-validation/dropdown_validation.php';
 
-
-require_once '../public/form-validation/dropdown_validation.php';
-
 // $getCentre = $pdo->prepare('SELECT * FROM healthcarecentres');
 // $getCentre->execute();
 // $centres = $getCentre->fetchAll(PDO::FETCH_ASSOC);
@@ -25,7 +22,6 @@ require_once '../public/form-validation/dropdown_validation.php';
 <h2 class="mb-3 page-title">Sign Up</h2>
 <h4 class="mb-5 page-description">Select user type by clicking the user icon</h4>
 
-
 <!-- 2 user icons Patient and Administrator-->
 <div class="container">
     <div class="row justify-content-center">
@@ -38,20 +34,9 @@ require_once '../public/form-validation/dropdown_validation.php';
             <i class="fas fa-user-md fa-10x sign-up-icon" data-toggle="modal" data-target="#adminForm"></i>
             <h3 class="sign-up-icon-text">Healthcare Administrator</h3>
         </div>
-<<<<<<< HEAD
 
-<<<<<<< HEAD:public/SignUp.php
-<<<<<<< HEAD:public/SignUp.php
-=======
-        <!-- <a class="btn btn-primary" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Open first modal</a> -->
->>>>>>> PHPTest:SignUp.php
-=======
->>>>>>> parent of 2ed2070 (complete request vaccination appointment)
-=======
->>>>>>> PHPTest:SignUp.php
     </div>
 </div>
-
 
 <!-- for patient -->
 <div class="modal fade" id="patientForm" tabindex="-1" role="dialog" aria-hidden="true">
@@ -106,24 +91,13 @@ require_once '../public/form-validation/dropdown_validation.php';
 
                         <!-- button -->
                         <button type="button" name="submit" id="submit" onclick="validatePatient(); return false;">Sign Up</button>
-<<<<<<< HEAD:public/SignUp.php
-<<<<<<< HEAD
-<<<<<<< HEAD:public/SignUp.php
   
-=======
->>>>>>> PHPTest:SignUp.php
-=======
->>>>>>> parent of 2ed2070 (complete request vaccination appointment)
-=======
-  
->>>>>>> PHPTest:SignUp.php
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 
 <!-- for admin -->
 <div class="modal fade" id="adminForm" tabindex="-1" role="dialog" aria-hidden="true">
@@ -139,16 +113,37 @@ require_once '../public/form-validation/dropdown_validation.php';
 
             <div class="modal-body">
                 <div class="container form-container">
-                    <form id="admin-sign-up-form" class="validation-form">
+                    <form id="admin-sign-up-form" class="validation-form sign-up-form">
 
                         <!-- select centre name -->
                         <div class="form-control">
                             <label for="admincentreName"><span class="text-danger">*</span>Select a Healthcare Centre:</label>
-                            <select class="form-select form-data" id="admincentreName" name="admincentreName">
+
+
+                            <select class="form-select" id="admincentreName" name="admincentreName" class="form_data">
+                                <option value="">Select Centre</option>
+
                                 <?php foreach ($centres as $centre) : ?>
-                                    <option><?php echo $centre['centreName'];?></option>
+                                    <option><?php echo $centre['centreName']; ?></option>
                                 <?php endforeach; ?>
+
+
+                                <!-- 
+                                        // $con = mysqli_connect("localhost", "root", "");
+                                        // $u = "SELECT centreName FROM healthcarecentres";
+                                        // $uu = mysqli_query($con, $u);
+
+                                        // while ($row = mysqli_fetch_array($uu)) {
+                                        //     $centreselect = $row["centreName"];
+                                        //     echo '<OPTION VALUE=\'' . $centreselect . '\'>' . $centreselect . '</OPTION>';
+                                        // }
+                                        // mysqli_close($con); //stänger connectio till DB system;
+                                        ?> -->
+
+
                             </select>
+
+
                             <small></small>
                         </div>
 
@@ -162,7 +157,6 @@ require_once '../public/form-validation/dropdown_validation.php';
                             </select>
                             <small></small>
                         </div> -->
-
 
                         <!-- admin username -->
                         <div class="form-control">
@@ -227,23 +221,8 @@ require_once '../public/form-validation/dropdown_validation.php';
                         <!-- patient username -->
                         <div class="form-control">
                             <label for="centreName"><span class="text-danger">*</span>New centre name:</label>
-<<<<<<< HEAD:public/SignUp.php
-<<<<<<< HEAD
-<<<<<<< HEAD:public/SignUp.php
                                 <input type="text" placeholder="centre name" id="centreName" name="centreName" class="form_data" />
                                 <small></small>
-=======
-                            <input type="text" placeholder="centre name" id="centreName" name="centreName" class="form_data" />
-                            <small></small>
->>>>>>> PHPTest:SignUp.php
-=======
-                            <input type="text" placeholder="centre name" id="centreName" name="centreName" class="form_data" />
-                            <small></small>
->>>>>>> parent of 2ed2070 (complete request vaccination appointment)
-=======
-                                <input type="text" placeholder="centre name" id="centreName" name="centreName" class="form_data" />
-                                <small></small>
->>>>>>> PHPTest:SignUp.php
                         </div>
 
                         <!-- patient password -->
@@ -264,54 +243,17 @@ require_once '../public/form-validation/dropdown_validation.php';
 
 
 
-<<<<<<< HEAD
 
 
-<<<<<<< HEAD:public/SignUp.php
-<<<<<<< HEAD:public/SignUp.php
 <!-- add new centre -->
 <p class="text-center mt-2">Add new centre? <i class="fas fa-plus-square fa-1x" data-toggle="modal" data-target="#centreForm"></i></p>
 <!--  -->
-=======
-
->>>>>>> PHPTest:SignUp.php
-=======
-<p class="text-center mt-2">Add new centre <i class="fas fa-plus-square fa-1x" data-toggle="modal" data-target="#centreForm"></i></p>
->>>>>>> parent of 2ed2070 (complete request vaccination appointment)
-=======
-<!-- add new centre -->
-<p class="text-center mt-2">Add new centre? <i class="fas fa-plus-square fa-1x" data-toggle="modal" data-target="#centreForm"></i></p>
-<!--  -->
->>>>>>> PHPTest:SignUp.php
 <p class="text-center mt-2">Already have an account? <a href="index.php">Log in here</a></p>
 
 
 <?php
 // footer of the page 
 include_once '../views/partials/footer.php';
-<<<<<<< HEAD
 ?>
 
 
-<<<<<<< HEAD:public/SignUp.php
-<<<<<<< HEAD:public/SignUp.php
-=======
-<script>
-    $("centreName").change(function () {
-        var data = $(this).find(":centreName").text();
-        $.ajax({
-            url : "admin_validation.php" ,
-            type: "GET",
-            data : data,
-            success : function () {
-                alert("success done");
-            }
-        })
-    });
-</script>
->>>>>>> PHPTest:SignUp.php
-=======
-?>
->>>>>>> parent of 2ed2070 (complete request vaccination appointment)
-=======
->>>>>>> PHPTest:SignUp.php

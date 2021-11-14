@@ -38,7 +38,7 @@ include_once '../views/partials/header.php';
                     </a>
                     <div class="dropdown-menu custom-nav-dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="PatientMenu.php">Dashboard <i class="fas fa-user"></i></a>
-                        <a class="dropdown-item" href="ViewVaccinationAppointmentStatus.php">Vaccination Appointment Status</a>
+                        <a class="dropdown-item" href="ViewVaccinationAppointmentStatus.php">View Vaccination Appointment Status</a>
                     </div>
                 </div>
             </li>
@@ -202,6 +202,12 @@ include_once '../views/partials/header.php';
 
             }
         });
+    }
+
+    // after patient click on the add button in add appointment
+    function addAppointment() {
+        alert("Added successfully!");
+        location.href = "RequestVaccination.php";
     }
 </script>
 

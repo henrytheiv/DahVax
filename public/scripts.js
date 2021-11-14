@@ -410,7 +410,6 @@ function validatePatient() {
       if (response.success != "") {
         document.getElementById("patient-sign-up-form").reset();
         alert("Patient signed up successfully!");
-        location.href = "index.php";
         setSuccessFor($patientUsernameInput);
         setSuccessFor($patientPasswordInput);
         setSuccessFor($patientEmailInput);
@@ -502,55 +501,6 @@ function updateToAdministered() {
   };
 }
 
-
-// after patient click on the add button in add appointment 
-function addAppointment() {
-  var form_element = document.getElementsByClassName("form_data");
-
-  var form_data = new FormData();
-
-  for (var i = 0; i < form_element.length; i++) {
-    form_data.append(form_element[i].name, form_element[i].value);
-  }
-
-  document.getElementById("submit").disabled = true;
-
-  var ajax_request = new XMLHttpRequest();
-
-  ajax_request.open("POST", "requestAppointment.php");
-
-  ajax_request.send(form_data);
-
-  ajax_request.onreadystatechange = function () {
-    if (ajax_request.readyState == 4 && ajax_request.status == 200) {
-      document.getElementById("submit").disabled = false;
-
-      // $patientUsernameInput = document.getElementById("username");
-      // $patientBatchNoInput = document.getElementById("batchNo");
-      $patientAppointmentDateInput = document.getElementById("appointmentDate");
-
-      if (response.success != "") {
-        document.getElementById("form").reset();
-        alert("Appointment added successfully!");
-       location.href = "RequestVaccination.php";
-        // setSuccessFor($patientUsernameInput);
-        // setSuccessFor($patientBatchNoInput);
-        setSuccessFor($patientAppointmentDateInput);
-      } else {
-        if (response.wrong_appointmentDate == "blankAppointmentDate") {
-          setErrorFor($patientAppointmentDateInput, "Appointment date cannot be blank");
-        } else if (response.wrong_appointmentDate == "invalidAppointmentDate") {
-          setErrorFor($patientAppointmentDateInput, "Invalid appointment date");
-        } else {
-          setSuccessFor($patientAppointmentDateInput);
-        }
-
-      // alert("Appointment added successfully!");
-      // location.href = "RequestVaccination.php";
-    }
-  };
-}
-
 function validateAdmin() {
   var form_element = document.getElementsByClassName("form_data");
 
@@ -590,8 +540,6 @@ function validateAdmin() {
         document.getElementById("admin-sign-up-form").reset();
 
         alert("Admin signed up successfully!");
-
-        location.href = "index.php";
 
         setSuccessFor($adminUsernameInput);
 
@@ -658,6 +606,12 @@ function validateAdmin() {
   };
 }
 
+// after patient click on the add button in add appointment
+function addAppointment() {
+  alert("Requested successfully!");
+  location.href = "RequestVaccination.php";
+}
+
 function validateCentre() {
   var form_element = document.getElementsByClassName("form_data");
 
@@ -682,13 +636,12 @@ function validateCentre() {
 
       $centreNameInput = document.getElementById("centreName");
       $addressInput = document.getElementById("centreAddress");
-      
+
       if (response.success != "") {
         document.getElementById("add-centre-form").reset();
         alert("New centre added successfully!");
         setSuccessFor($centreNameInput);
         setSuccessFor($addressInput);
-
       } else {
         if (response.wrong_centrename == "blankCentreName") {
           setErrorFor($centreNameInput, "Centre name cannot be blank");
@@ -707,12 +660,3 @@ function validateCentre() {
     }
   };
 }
-
-}
-
-
-
-
-
-
-

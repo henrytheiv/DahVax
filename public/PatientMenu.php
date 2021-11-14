@@ -40,7 +40,7 @@ include_once '../views/partials/header.php';
     </div>
     <div class="col-lg-4">
       <div class="row">
-        <a class="btn btn-primary btn-lg mb-3 function-button" href="#" role="button">
+        <a class="btn btn-primary btn-lg mb-3 function-button" href="RequestVaccination.php" role="button">
           Request Vaccination Appointment 
         </a>
       </div>
