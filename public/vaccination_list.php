@@ -37,7 +37,7 @@ if (is_post()) {
       <td>' . $vaccination["status"] . '</td>
       <td>' . $vaccination["remarks"] . '</td>
       <td>
-        <i class="fas fa-edit fa-2x" id="' . $vaccination['vaccinationID'] . '" data-bs-target="#viewVaccinationInfo" data-bs-toggle="modal" data-bs-dismiss="modal" onclick="getVaccination(this.id)"></i>
+        <i class="fas fa-edit fa-2x '.$vaccination['vaccinationID'] .'" id="' . $vaccination['vaccinationID'] . '" data-bs-target="#viewVaccinationInfo" data-bs-toggle="modal" data-bs-dismiss="modal" onclick="getVaccination(this.id)"></i>
       </td>
   </tr>';
     }
