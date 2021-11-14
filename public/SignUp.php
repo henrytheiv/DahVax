@@ -4,9 +4,9 @@
 include_once '../views/partials/header.php';
 
 //validatation for patient
-require_once '../public/form-validation/patient_validation.php';
+// require_once '../public/form-validation/patient_validation.php';
 
-require_once '../public/form-validation/dropdown_validation.php';
+// require_once '../public/form-validation/dropdown_validation.php';
 
 
 require_once '../public/form-validation/dropdown_validation.php';
@@ -14,7 +14,6 @@ require_once '../public/form-validation/dropdown_validation.php';
 // $getCentre = $pdo->prepare('SELECT * FROM healthcarecentres');
 // $getCentre->execute();
 // $centres = $getCentre->fetchAll(PDO::FETCH_ASSOC);
-
 
 ?>
 
@@ -42,11 +41,14 @@ require_once '../public/form-validation/dropdown_validation.php';
 <<<<<<< HEAD
 
 <<<<<<< HEAD:public/SignUp.php
+<<<<<<< HEAD:public/SignUp.php
 =======
         <!-- <a class="btn btn-primary" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Open first modal</a> -->
 >>>>>>> PHPTest:SignUp.php
 =======
 >>>>>>> parent of 2ed2070 (complete request vaccination appointment)
+=======
+>>>>>>> PHPTest:SignUp.php
     </div>
 </div>
 
@@ -104,6 +106,7 @@ require_once '../public/form-validation/dropdown_validation.php';
 
                         <!-- button -->
                         <button type="button" name="submit" id="submit" onclick="validatePatient(); return false;">Sign Up</button>
+<<<<<<< HEAD:public/SignUp.php
 <<<<<<< HEAD
 <<<<<<< HEAD:public/SignUp.php
   
@@ -111,6 +114,9 @@ require_once '../public/form-validation/dropdown_validation.php';
 >>>>>>> PHPTest:SignUp.php
 =======
 >>>>>>> parent of 2ed2070 (complete request vaccination appointment)
+=======
+  
+>>>>>>> PHPTest:SignUp.php
                     </form>
                 </div>
             </div>
@@ -221,6 +227,7 @@ require_once '../public/form-validation/dropdown_validation.php';
                         <!-- patient username -->
                         <div class="form-control">
                             <label for="centreName"><span class="text-danger">*</span>New centre name:</label>
+<<<<<<< HEAD:public/SignUp.php
 <<<<<<< HEAD
 <<<<<<< HEAD:public/SignUp.php
                                 <input type="text" placeholder="centre name" id="centreName" name="centreName" class="form_data" />
@@ -233,6 +240,10 @@ require_once '../public/form-validation/dropdown_validation.php';
                             <input type="text" placeholder="centre name" id="centreName" name="centreName" class="form_data" />
                             <small></small>
 >>>>>>> parent of 2ed2070 (complete request vaccination appointment)
+=======
+                                <input type="text" placeholder="centre name" id="centreName" name="centreName" class="form_data" />
+                                <small></small>
+>>>>>>> PHPTest:SignUp.php
                         </div>
 
                         <!-- patient password -->
@@ -257,6 +268,7 @@ require_once '../public/form-validation/dropdown_validation.php';
 
 
 <<<<<<< HEAD:public/SignUp.php
+<<<<<<< HEAD:public/SignUp.php
 <!-- add new centre -->
 <p class="text-center mt-2">Add new centre? <i class="fas fa-plus-square fa-1x" data-toggle="modal" data-target="#centreForm"></i></p>
 <!--  -->
@@ -266,6 +278,11 @@ require_once '../public/form-validation/dropdown_validation.php';
 =======
 <p class="text-center mt-2">Add new centre <i class="fas fa-plus-square fa-1x" data-toggle="modal" data-target="#centreForm"></i></p>
 >>>>>>> parent of 2ed2070 (complete request vaccination appointment)
+=======
+<!-- add new centre -->
+<p class="text-center mt-2">Add new centre? <i class="fas fa-plus-square fa-1x" data-toggle="modal" data-target="#centreForm"></i></p>
+<!--  -->
+>>>>>>> PHPTest:SignUp.php
 <p class="text-center mt-2">Already have an account? <a href="index.php">Log in here</a></p>
 
 
@@ -276,6 +293,7 @@ include_once '../views/partials/footer.php';
 ?>
 
 
+<<<<<<< HEAD:public/SignUp.php
 <<<<<<< HEAD:public/SignUp.php
 =======
 <script>
@@ -295,3 +313,5 @@ include_once '../views/partials/footer.php';
 =======
 ?>
 >>>>>>> parent of 2ed2070 (complete request vaccination appointment)
+=======
+>>>>>>> PHPTest:SignUp.php
