@@ -30,6 +30,12 @@ if (is_post()) {
     $findExistingPatientSQL->execute();
     $result = $findExistingPatientSQL->rowCount();
 
+    //prevent duplicate username 
+    $findExistingEmailSQL = $pdo->prepare("SELECT * FROM patients WHERE email = :email");
+    $findExistingEmailSQL->bindValue(':email', $email);
+    $findExistingEmailSQL->execute();
+    $result1 = $findExistingEmailSQL->rowCount();
+
     //validation for username
     if (empty($username)) {
         $wrong_patient_username = 'blankPatientUsername';
@@ -51,6 +57,10 @@ if (is_post()) {
     //validation for email
     if (empty($email)) {
         $wrong_patient_email = 'blankPatientEmail';
+    } else {
+        if ($result1 > 0) {
+            $wrong_patient_email = 'usedPatientEmail';
+        }
     }
 
     //validation for full name
