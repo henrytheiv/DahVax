@@ -6,6 +6,8 @@ include_once '../views/partials/header.php';
 //validatation for patient
 // require_once '../public/form-validation/patient_validation.php';
 
+// require_once '../public/form-validation/admin_validation.php';
+
 // require_once '../public/form-validation/dropdown_validation.php';
 
 // $getCentre = $pdo->prepare('SELECT * FROM healthcarecentres');
@@ -91,7 +93,7 @@ include_once '../views/partials/header.php';
 
                         <!-- button -->
                         <button type="button" name="submit" id="submit" onclick="validatePatient(); return false;">Sign Up</button>
-  
+
                     </form>
                 </div>
             </div>
@@ -121,11 +123,16 @@ include_once '../views/partials/header.php';
 
 
                             <select class="form-select" id="admincentreName" name="admincentreName" class="form_data">
-                                <option value="">Select Centre</option>
+                                <option value="abc abc">Select Centre</option>
 
-                                <?php foreach ($centres as $centre) : ?>
-                                    <option><?php echo $centre['centreName']; ?></option>
-                                <?php endforeach; ?>
+                                <?php
+                                $con = mysqli_connect("localhost", "root", "", "dahvax");
+                                $sql = mysqli_query($con, "SELECT centreName From healthcarecentres");
+                                $row = mysqli_num_rows($sql);
+                                while ($row = mysqli_fetch_array($sql)) {
+                                    echo "<option value='" . $row['centreName'] . "'>" . $row['centreName'] . "</option>";
+                                }
+                                ?>
 
 
                                 <!-- 
@@ -221,8 +228,8 @@ include_once '../views/partials/header.php';
                         <!-- patient username -->
                         <div class="form-control">
                             <label for="centreName"><span class="text-danger">*</span>New centre name:</label>
-                                <input type="text" placeholder="centre name" id="centreName" name="centreName" class="form_data" />
-                                <small></small>
+                            <input type="text" placeholder="centre name" id="centreName" name="centreName" class="form_data" />
+                            <small></small>
                         </div>
 
                         <!-- patient password -->
@@ -255,5 +262,3 @@ include_once '../views/partials/header.php';
 // footer of the page 
 include_once '../views/partials/footer.php';
 ?>
-
-

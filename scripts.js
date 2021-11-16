@@ -392,7 +392,7 @@ function validatePatient() {
 
   var ajax_request = new XMLHttpRequest();
 
-  ajax_request.open("POST", "form-validation/patient_validation.php");
+  ajax_request.open("POST", "http://localhost/DAHVAX/DahVax/public/form-validation/patient_validation.php");
 
   ajax_request.send(form_data);
 
@@ -505,70 +505,74 @@ function updateToAdministered() {
 
 // after patient click on the add button in add appointment 
 function addAppointment() {
-  var form_element = document.getElementsByClassName("form_data");
+  // var form_element = document.getElementsByClassName("form_data");
 
-  var form_data = new FormData();
+  // var form_data = new FormData();
 
-  for (var i = 0; i < form_element.length; i++) {
-    form_data.append(form_element[i].name, form_element[i].value);
-  }
+  // for (var i = 0; i < form_element.length; i++) {
+  //   form_data.append(form_element[i].name, form_element[i].value);
+  // }
 
-  document.getElementById("submit").disabled = true;
+  // document.getElementById("submit").disabled = true;
 
-  var ajax_request = new XMLHttpRequest();
+  // var ajax_request = new XMLHttpRequest();
 
-  ajax_request.open("POST", "requestAppointment.php");
+  // ajax_request.open("POST", "requestAppointment.php");
 
-  ajax_request.send(form_data);
+  // ajax_request.send(form_data);
 
-  ajax_request.onreadystatechange = function () {
-    if (ajax_request.readyState == 4 && ajax_request.status == 200) {
-      document.getElementById("submit").disabled = false;
+  // ajax_request.onreadystatechange = function () {
+  //   if (ajax_request.readyState == 4 && ajax_request.status == 200) {
+  //     document.getElementById("submit").disabled = false;
 
-      // $patientUsernameInput = document.getElementById("username");
-      // $patientBatchNoInput = document.getElementById("batchNo");
-      $patientAppointmentDateInput = document.getElementById("appointmentDate");
+  //     // $patientUsernameInput = document.getElementById("username");
+  //     // $patientBatchNoInput = document.getElementById("batchNo");
+  //     $patientAppointmentDateInput = document.getElementById("appointmentDate");
 
-      if (response.success != "") {
-        document.getElementById("form").reset();
-        alert("Appointment added successfully!");
-       location.href = "RequestVaccination.php";
-        // setSuccessFor($patientUsernameInput);
-        // setSuccessFor($patientBatchNoInput);
-        setSuccessFor($patientAppointmentDateInput);
-      } else {
-        if (response.wrong_appointmentDate == "blankAppointmentDate") {
-          setErrorFor($patientAppointmentDateInput, "Appointment date cannot be blank");
-        } else if (response.wrong_appointmentDate == "invalidAppointmentDate") {
-          setErrorFor($patientAppointmentDateInput, "Invalid appointment date");
-        } else {
-          setSuccessFor($patientAppointmentDateInput);
-        }
+  //     if (response.success != "") {
+  //       document.getElementById("form").reset();
+  //       alert("Appointment added successfully!");
+  //      location.href = "RequestVaccination.php";
+  //       // setSuccessFor($patientUsernameInput);
+  //       // setSuccessFor($patientBatchNoInput);
+  //       setSuccessFor($patientAppointmentDateInput);
+  //     } else {
+  //       if (response.wrong_appointmentDate == "blankAppointmentDate") {
+  //         setErrorFor($patientAppointmentDateInput, "Appointment date cannot be blank");
+  //       } else if (response.wrong_appointmentDate == "invalidAppointmentDate") {
+  //         setErrorFor($patientAppointmentDateInput, "Invalid appointment date");
+  //       } else {
+  //         setSuccessFor($patientAppointmentDateInput);
+  //       }
 
-      // alert("Appointment added successfully!");
-      // location.href = "RequestVaccination.php";
+      alert("Appointment added successfully!");
+      location.href = "RequestVaccination.php";
     }
-  };
-}
 
 function validateAdmin() {
   var form_element = document.getElementsByClassName("form_data");
 
   var form_data = new FormData();
 
+  
   for (var i = 0; i < form_element.length; i++) {
     form_data.append(form_element[i].name, form_element[i].value);
   }
 
+  // get dropdown value and pass it to database
+  var e = document.getElementById("admincentreName");
+  var selectedCentreName = e.options[e.selectedIndex].text;
+  form_data.append("admincentreName", selectedCentreName)
   document.getElementById("submit").disabled = true;
 
   var ajax_request = new XMLHttpRequest();
-
-  ajax_request.open("POST", "form-validation/admin_validation.php");
-
+  
+  ajax_request.open("POST", "http://localhost/DAHVAX/DahVax/public/form-validation/admin_validation.php");
+  
   ajax_request.send(form_data);
 
   ajax_request.onreadystatechange = function () {
+    
     if (ajax_request.readyState == 4 && ajax_request.status == 200) {
       document.getElementById("submit").disabled = false;
 
@@ -708,7 +712,6 @@ function validateCentre() {
   };
 }
 
-}
 
 
 
